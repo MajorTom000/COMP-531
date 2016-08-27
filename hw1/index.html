@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            #warning{
+                color:red;
+            }
+
+            .asterisk{
+                color:red;
+            }
+        </style>
+
+        <meta name="author" content="Qianyi Wu">
+    </head>
+    <body>
+        <form action="formProcessor.html" id="registrationForm" method="GET">
+            Account Name: <input type="text" name="AName" placeholder="Account Name" required> <span class="asterisk">*</span>
+            <br>
+            Display Name: <input type="text" name="DName" placeholder="Display Name (optional)">
+            <br>
+            Email Address: <input type="email" name="Email" placeholder="Email" required> <span class="asterisk">*</span>
+            <br>
+            Phone Number: <input type="tel" name="Phone" placeholder="Phone" required> <span class="asterisk">*</span>
+            <br>
+            Date of Birth: <input type="date" name="DOB" id="DOB" placeholder="Date of Birth" required> <span class="asterisk">*</span>
+            <br>
+            Zip Code (5 digits): <input type="text" name="Zip" placeholder="Zip Code" pattern="[0-9]{5}"  required> <span class="asterisk">*</span>
+            <br>
+            Password: <input type="password" name="Pass" placeholder="Password" id="pass1" required> <span class="asterisk">*</span>
+            <br>
+            Password Confirmation: <input type="password" name="PassConf" id="pass2" placeholder="Password Confirmation" required> <span class="asterisk">*</span>
+            <br>
+            <input type="hidden" name="TimeStamp" id="timeStamp">
+            <span id="warning"></span>
+            <br>
+            <input type="submit" value="Submit" onclick="return submitForm();">
+            <input type="button" value="Clear" onclick="clearForm();">
+        </form>
+    </body>
+    <script>
+        function submitForm(){
+            var flag = true;
+            var d = new Date();
+            
+            //validate if 18 years old
+            document.getElementById("timeStamp").value = d.getTime();
+            document.getElementById("warning").textContent = "";
+
+            var bString = document.getElementById("DOB").value;
+            var bTime = new Date(bString);
+
+            if (bTime.getTime() !== bTime.getTime()) return false; //if user hasn't filled out DoB, just return
+
+            var timeString = d.getFullYear()-18 + "-" + (d.getMonth()-(-1)) + "-" + d.getDate();
+            var timeBar = new Date(timeString);
+            var comparison = timeBar.getTime() >= bTime.getTime();
+            if (!comparison){
+                document.getElementById("warning").innerHTML += "You need to be 18 years old or older to register!<br>";
+                flag = false;
+            }
+            //validate passwords
+            var p1 = document.getElementById("pass1").value;
+            var p2 = document.getElementById("pass2").value;
+            if (p1!==p2){
+                document.getElementById("warning").innerHTML += "Passwords don't match!<br>";
+                flag = false;
+            }
+            return flag;
+            
+        }
+
+        function clearForm(){
+            document.getElementById("warning").innerHTML = "";
+            document.getElementById("registrationForm").reset();
+        }
+    </script>
+
+</html>
