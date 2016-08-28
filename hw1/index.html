@@ -46,16 +46,12 @@
             //validate if 18 years old
             document.getElementById("timeStamp").value = d.getTime();
             document.getElementById("warning").textContent = "";
-
             var bString = document.getElementById("DOB").value;
             var bTime = new Date(bString);
-
-            if (bTime.getTime() !== bTime.getTime()) return false; //if user hasn't filled out DoB, just return
-
             var timeString = d.getFullYear()-18 + "-" + (d.getMonth()-(-1)) + "-" + d.getDate();
             var timeBar = new Date(timeString);
             var comparison = timeBar.getTime() >= bTime.getTime();
-            if (!comparison){
+            if (bTime.getTime() === bTime.getTime() &&!comparison){
                 document.getElementById("warning").innerHTML += "You need to be 18 years old or older to register!<br>";
                 flag = false;
             }
@@ -67,7 +63,6 @@
                 flag = false;
             }
             return flag;
-            
         }
 
         function clearForm(){
