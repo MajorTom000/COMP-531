@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Hello HTML!</title>
+    <meta charset="utf-8">
+    <script>
+        function clearText(){
+            document.getElementById("txtArea").value = '';
+        }
+
+        function TimerRedirect(callback, delay, indicatorID){
+
+            var timeOutId, start, remaining = delay, timeIntervalID;
+
+            this.resume = function(){
+                start = new Date();
+                window.clearTimeout(timeOutId);
+                timeOutId = setTimeout(callback, remaining);
+                var displayUpdate = Math.round(remaining/1000);
+                timeIntervalID  = setInterval(
+                    function(){
+                        document.getElementById(indicatorID).innerHTML = (displayUpdate--);
+                    }, 1000);
+            }
+
+            this.pause = function(){
+                remaining -= new Date() - start;
+                window.clearTimeout(timeOutId);
+                window.clearInterval(timeIntervalID);
+            }
+
+            this.resume();
+        }
+
+        var timer;
+
+        window.onload=function(){
+            setTimeout(function(){
+                alert("the page will redirect when the counter reaches zero");
+                timer = new TimerRedirect(function(){
+                window.location = "http://www.clear.rice.edu/comp431/sample/hello.html";
+                }, 15000, 'indicator')
+            },5000);
+
+            
+        };
+
+        
+    </script>
+</head>
+
+<body>
+
+Count down: <span id="indicator"></span><br>
+<input type="button" onclick="timer.pause()" value="Pause"><input type="button" onclick="timer.resume()" value="Resume">
+
+<table border="1">
+	<tr><td>Athenian</td><td>Owl</td></tr>
+	<tr><td colspan="2"><img src="http://explore.rice.edu/uploadedImages/Explore/Welcome_to_Rice/riceacademicseal1.jpg"></td></tr>
+</table>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<ul>
+	<li><a href="http://www.rice.edu">Rice</a></li>
+	<li><a href="http://www.chron.com">Houston Chronicle</a></li>
+	<li><a href="http://www.twitter.com">Twitter</a></li>
+	<li><a href="http://www.twosigma.com">TwoSigma</a></li>
+</ul>
+
+<textarea rows="10" cols="50" id="txtArea">
+
+
+ --- Enter your message here --- 
+
+
+</textarea>
+
+<input type="button" onclick="clearText()" value="Clear">
