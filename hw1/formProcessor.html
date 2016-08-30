@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="author" content="Qianyi Wu">
+        <style>
+            #display{
+                border: solid black 1px;
+                border-collapse: collapse;
+            }
+
+            tr,td,th{
+                border: solid black 1px;
+                /*border-collapse: collapse;*/
+            }    
+        </style>
+    </head>
+    <body>
+        <table id="display">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="dynamic">
+            </tbody>
+        </table>
+    </body>
+    <script>
+        //example query string
+        //formProcessor.html?AName=abc&DName=&Email=qw12%40rice.edu&Phone=5179742828&DOB=1990-12-12&Zip=77030&Pass=1234&PassConf=1234&TimeStamp=1472321207260
+        window.onload = function(){
+            var dictionary = loadQueryString();
+            var table = document.getElementById("dynamic");
+            console.log(table.innerHTML);
+            for (var keys in dictionary){
+                var value = dictionary[keys];
+                if (keys === "TimeStamp"){
+                    var t = new Date(parseInt(dictionary[keys]));
+                    value = t.toGMTString();
+                }
+                table.innerHTML += "<tr><td>" + keys + "</td><td>" + value + "</td></tr>";
+            }
+
+            console.log(table.innerHTML);
+        }
+
+
+        function loadQueryString(){
+            var dict = {};
+            var url = window.location.href;
+            var queryString = url.substring(url.search("[\?]")+1, url.length);
+            console.log(queryString);
+            var bundledPairs = queryString.split("&");
+            console.log(bundledPairs);
+            for (var i = 0; i < bundledPairs.length; i++){
+                var keyValue = bundledPairs[i].split("=");
+                console.log(keyValue);
+                dict[keyValue[0]] = decodeURIComponent(keyValue[1]);
+            }
+            return dict;
+        }
+    </script>
+</html>
