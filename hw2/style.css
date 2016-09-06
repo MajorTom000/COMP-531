@@ -1,0 +1,11 @@
+.primary{
+    width:50%;
+    float:left;
+}
+
+.secondary{
+    width:50%;
+    float:left;
+    align-content: center;
+    padding-left: 1em;
+}
