@@ -16,32 +16,28 @@ function card(cardDiv, imgFiles){
     this.timer = function(){
         var imgTag = cardDiv.getElementsByTagName("IMG");
 
+        if (imgTag.length == 0) return;
+
         timerID = setInterval(function(){
             imgTag[0].setAttribute("src", imgFiles[getRandomInt(1,imgFiles.length)]);
         },this.timerInterval);
-    };
 
-    this.setupToggle = function(){
-        //if (!card.timer()) return;
         var button = cardDiv.getElementsByTagName("BUTTON")[0];
-        console.log(button);
-        if (!button) return;
         button.onclick = function(){
-            if (button.innterHTML == "STOP"){
-                clearInterval(that.timerID);
-                button.innerHTML = "START";
-                console.log(button.innerHTML);
+            if (button.innerText == "STOP"){
+                clearInterval(timerID);
+                button.innerText = "START";
                 
             }
             else{
-                button.innerHTML = "STOP";
+                that.timerInterval = getRandomInt(1000,5000);
+                button.innerText = "STOP";
                 that.timer();
-                console.log(button.innerHTML);
             }
         }
-    };  
+    };
 
-    this.setupToggle();
+    this.timer();
 
 }
 
