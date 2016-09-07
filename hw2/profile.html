@@ -31,31 +31,31 @@
         </div>
 
         <div class="container">
-            <p class="warning">The original field value is the content between '*'</p>
+            <p class="warning">The original field value is the written in bold</p>
             <div class="row">
                 <div class="input-field col s12 m6">
                     <input id="displayname" type="text" >
-                    <label for="displayname" data-error="empty" data-success="valid">Display Name *<span id="p_dname">abc</span>*</label>
+                    <label for="displayname" data-error="empty" data-success="valid">Display Name <span id="p_dname" class="old">abc</span></label>
                 </div>
                 <div class="input-field col s12 m6">
                     <input id="email" type="email">
-                    <label for="email" data-error="wrong format" data-success="valid">Email *<span id="p_email">abc@abc.abc</span>*</label>
+                    <label for="email" data-error="wrong format" data-success="valid">Email <span id="p_email" class="old">abc@abc.abc</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
                     <input id="phonenumber" type="tel">
-                    <label for="phonenumber" data-error="wrong format" data-success="valid">Phone Number *<span id="p_phone">123-123-1234</span>*</label>
+                    <label for="phonenumber" data-error="wrong format" data-success="valid">Phone <span id="p_phone" class="old">123-123-1234</span></label>
                 </div>
                 <div class="input-field col s12 m6">
                     <input id="zipcode" type="text" >
-                    <label for="zipcode" data-error="wrong format" data-success="valid">Zip Code *<span id="p_zip">12345</span>*</label>
+                    <label for="zipcode" data-error="wrong format" data-success="valid">Zip Code <span id="p_zip" class="old">12345</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
                     <input id="password" type="password">
-                    <label for="password" data-error="passwords do not match" data-success="valid">Password *<span id="p_pass">abc123</span>*</label>
+                    <label for="password" data-error="passwords do not match" data-success="valid" id="passlabel">Password <span id="p_pass" class="old">abc123</span></label>
                 </div>
                 <div class="input-field col s12 m6">
                     <input id="passwordconf" type="password">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="row">
-                <button class="btn waves-effect waves-light" type="submit">Update
+                <button class="btn waves-effect waves-light" type="submit" id="update">Update
                     <i class="material-icons right">send</i>
                 </button>
             </div>

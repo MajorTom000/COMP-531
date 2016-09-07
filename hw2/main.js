@@ -9,13 +9,17 @@ function getRandomInt(min, max){
 //object to be assigned to each card div
 //there is a timer going along with it 
 function card(cardDiv, imgFiles){
+
     //for refering to the card object when 'this' going into a deeper scope
     var that = this;
 
+    //the interval id
     var timerID;
 
+    //random interval
     this.timerInterval = getRandomInt(1000,5000);
 
+    //start the interval updates
     this.timer = function(){
         var imgTag = cardDiv.getElementsByTagName("IMG");
 
@@ -26,6 +30,7 @@ function card(cardDiv, imgFiles){
         },this.timerInterval);
     };
 
+    //set up the button for that card DOM element
     this.setup = function(){
         var button = cardDiv.getElementsByTagName("BUTTON")[0];
         if(!button) return;
@@ -54,6 +59,7 @@ window.onload = function(){
 
     var cards = document.getElementsByClassName("card");
     var imageFiles = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg"];
+    //assign each card DOM element a new card object
     Array.from(cards).forEach(function(element,value,index){
         element.card = new card(element, imageFiles);
     });

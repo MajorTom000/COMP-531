@@ -18,3 +18,7 @@ img{
 .warning{
     color:red;
 }
+
+.old{
+    font-weight: bolder;
+}
