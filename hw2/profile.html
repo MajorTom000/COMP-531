@@ -7,7 +7,7 @@
         <!-- MaterializeCSS -->
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Compiled and minified JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -19,14 +19,54 @@
             <nav>
                 <div class="nav-wrapper blue">
                     <a href="#" class="brand-logo">COMP531-HW2</a>
+                    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
+                        <li><a href="main.html">Home</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-menu">
                         <li><a href="main.html">Home</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
 
-
-
+        <div class="container">
+            <p class="warning">The original field value is the content between '*'</p>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="displayname" type="text" >
+                    <label for="displayname" data-error="empty" data-success="valid">Display Name *<span id="p_dname">abc</span>*</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="email" type="email">
+                    <label for="email" data-error="wrong format" data-success="valid">Email *<span id="p_email">abc@abc.abc</span>*</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="phonenumber" type="tel">
+                    <label for="phonenumber" data-error="wrong format" data-success="valid">Phone Number *<span id="p_phone">123-123-1234</span>*</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="zipcode" type="text" >
+                    <label for="zipcode" data-error="wrong format" data-success="valid">Zip Code *<span id="p_zip">12345</span>*</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="password" type="password">
+                    <label for="password" data-error="passwords do not match" data-success="valid">Password *<span id="p_pass">abc123</span>*</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="passwordconf" type="password">
+                    <label for="passwordconf" data-error="passwords do not match" data-success="valid">Password Confirmation</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit">Update
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
     </body>
 </html>
