@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Qianyi Wu">
+        
+        <!-- MaterializeCSS -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <script type="text/javascript" src="profile.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">    
+    </head>
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper blue">
+                    <a href="#" class="brand-logo">COMP531-HW3</a>
+                    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="main.html">Home</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-menu">
+                        <li><a href="main.html">Home</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container">
+            <div class="primary userprofile center-align">
+                <div class="row">
+                    <img src="EricCartman.png" class="circle responsive-img">
+                </div>
+                <div class="row">
+                    <h3>Current Info</h3>
+                </div>
+                <div class="row">
+                    Display Name:  <span id="p_dname" class="old">Eric Cartman</span>
+                </div>
+                <div class="row">
+                    Email:  <span id="p_email" class="old">ericcartman@southpark.com</span>
+                </div>
+                <div class="row">
+                     Phone Number:  <span id="p_phone" class="old">123-123-1234</span>
+                </div>
+                <div class="row">
+                     Zip Code:  <span id="p_zip" class="old">12345</span>
+                </div>
+                <div class="row">
+                    Password:  <span id="p_pass" class="old">abc123</span>
+                </div>
+            </div>
+            <div class="secondary center-align">
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <div class="file-field input-field">
+                            <div class="btn"><span>Update Profile Image</span><input type="file"></div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="displayname" type="text" >
+                        <label for="displayname" data-error="empty" data-success="valid">Display Name </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="email" type="email">
+                        <label for="email" data-error="wrong format" data-success="valid">Email </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="phonenumber" type="tel">
+                        <label for="phonenumber" data-error="wrong format" data-success="valid">Phone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="zipcode" type="text" >
+                        <label for="zipcode" data-error="wrong format" data-success="valid">Zip Code</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="password" type="password">
+                        <label for="password" data-error="passwords do not match" data-success="valid" id="passlabel">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m10">
+                        <input id="passwordconf" type="password">
+                        <label for="passwordconf" data-error="passwords do not match" data-success="valid">Password Confirmation</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" id="update">Update
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="author" content="Qianyi Wu">
+        <script src="index.js" type="text/javascript"></script>
+        <!-- MaterializeCSS -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">    
+    </head>
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper blue">
+                    <a href="#" class="brand-logo">COMP531-HW3</a>
+                    <ul class="right login hide-on-med-and-down">
+                        <li><input id="username1" placeholder="Username" type="text" class="white navlogin"></li>
+                        <li><input id="password1" placeholder="Password" type="password" class="white navlogin"></li>
+                        <li><input id="login1" value="Log in" type="button" class="btn waves-light navlogin" onclick="login(this);"></li>
+                        <li><a href="#" class="navlogin">Forgot Password?</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class = "container">
+            <div class="forms">
+                <div class="heading">
+                </div>
+                <div class="row">
+
+                    <div class="login col s12 m4 l4 hide-on-large-only" id="dropdownform">
+                        <div class="input-field">
+                            <input id="username2" type="text">
+                            <label for="username">User Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="password2" type="password">
+                            <label for="password">Password</label>
+                        </div>
+                        <input class="waves-effect waves-light btn blue" type="button" value="Log in" onclick="login(this);">
+                        <a href="#">Forgot password?</a>
+                    </div> 
+                    <div class="register col s12 m6 l6 right">
+                        <form action="main.html" id="registrationForm" method="GET">
+                            <div class="input-field">
+                                <input id="aname" type="text" name="AName" required>
+                                <label for="aname">Account Name</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="dname" type="text" name="DName">
+                                <label for="dname">Display Name (Optional)</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="email" type="email" name="Email" required>
+                                <label for="email">Email Address</label>
+                            </div>
+                            <div class="input-field">
+                                <input id="phone" type="text" name="Phone" pattern="[0-9]{10}" required>
+                                <label for="phone">Phone Number (10 digit)</label>
+                            </div>
+                            <div class="input-field">
+                                <label for="DOB">Date of Birth</label>
+                                <input type="text" class="datepicker" name="DOB" id="DOB" required>
+                                
+                            </div>
+                            <div class="input-field">
+                                <input id="zip" type="text" name="Zip" pattern="[0-9]{5}"  required>
+                                <label for="zip">Zip Code (5 digits)</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" name="Pass" id="pass1" required>
+                                <label for="pass1">Password</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" name="PassConf" id="pass2" required>
+                                <label for="pass2">Password Confirmation</label>
+                            </div>
+                            <input type="hidden" name="TimeStamp" id="timeStamp">
+                            <span class="warning"></span>
+                            <br>
+                            <input class="waves-effect waves-light btn blue" type="submit" value="Register" onclick="return submitForm();">
+                            <input class="waves-effect waves-light btn blue" type="button" value="Clear" onclick="clearForm();">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
