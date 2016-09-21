@@ -18,7 +18,37 @@ function createElement(node) {
 	// create the element and return it to the caller
 	// the node might have event listeners that need to be registered
 	// the node might have children that need to be created as well
-	return null
+     var ele = document.createElement(node.tag)
+
+     if (node.props){
+        Object.keys(node.props).forEach(function(key, index){
+            if (key == 'onClick'){
+                ele.addEventListener('click', function(e){
+                    node.props[key](e)
+                    update()
+                })
+            }
+            else if (key == 'className'){
+                ele.setAttribute('class', (node.props[key]))
+            }
+            else{
+                ele.setAttribute(key, (node.props[key]))
+            }
+            
+        })
+    }
+
+    if (node.children){
+        node.children.forEach(function(element, index){
+            if (typeof(element) === 'object'){
+                ele.appendChild(createElement(element))
+            }
+            else{
+                ele.innerHTML = element;
+            }
+        })
+    }
+	return ele
 }
 
 function changed(node1, node2) {
@@ -43,8 +73,21 @@ function updateElement(parent, newNode, oldNode, index=0) {
     	console.log('update element that may have changed')
     	// you can use my changed(node1, node2) method above
     	// to determine if an element has changed or not
-
     	// be sure to also update the children!
+
+        if (changed(newNode, oldNode)) {
+            var newDOM = createElement(newNode)
+            parent.children.splice(index, 0, newDOM)
+        } else if (newNode.children){
+            if (newNode.children.length >= oldNode.children.length) {
+                    newNode.children.forEach(function(value, i){
+                    updateElement(parent.children[index],value,oldNode.children[i],i)
+                    })
+            } else {
+                parent.replaceChild(createElement(newNode),parent.children[index])
+            }
+        }
+
     }
 }
 
