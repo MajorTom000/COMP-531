@@ -17,7 +17,7 @@ class ToDoItem extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            done: false,
+            done: false
         }
     }
 
@@ -25,10 +25,10 @@ class ToDoItem extends React.Component {
         console.log(this.state)
         return (
 
-        <li id={this.state.id}>
-            <i className="check glyphicon glyphicon-check" onClick={()=>{this.state.done = !this.state.done}}/>
-            <span contentEditable="true">{this.state.text}</span>
-            <i className="destroy glyphicon glyphicon-remove"/>
+        <li id={this.props.id}>
+            <i className="check glyphicon glyphicon-check" onClick={()=>{this.setState({done:!this.state.done})}}/>
+            <span className={this.state.done?"completed":" "}>{this.props.text}</span>
+            <i className="destroy glyphicon glyphicon-remove" onClick={this.props.remove} />
         </li>
         /*
         h("li", { id: `task${_taskId++}`}, [
@@ -58,13 +58,12 @@ class ToDos extends React.Component {
     addTodo() {
         // IMPLEMENT ME!
 
-        const text = 'add another item'
+        const text = document.getElementById("newTODO").value;
         this.setState({ todoItems: [
                 ...this.state.todoItems, 
                 {id:this.nextId++, text}
             ]
         })
-        console.log(this.state.todoItems)
     }
 
     removeTodo(removeId) {
@@ -84,7 +83,7 @@ class ToDos extends React.Component {
             <button onClick={this.addTodo}>Add Item</button>
             <span className="submit"><a href="https://webdev-rice.herokuapp.com" target="_blank">Submit your exercise</a></span>
             <ul className="todo">
-                {this.state.todoItems.map((x,i)=><ToDoItem id={x.id} text={x.text} key={i}/>)}
+                {this.state.todoItems.map((x,i)=><ToDoItem id={x.id} text={x.text} remove={()=>this.removeTodo(x.id)} key={i}/>)}
             </ul>
         </div>
         /*
