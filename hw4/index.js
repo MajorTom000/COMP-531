@@ -14,25 +14,26 @@ var createGame = function(canvas){
     var batx = canvas.width/2
     var baty = canvas.height - 40
     var batwidth = 100
-    var batheight = 20
+    var batheight = 10
 
     const reflectAngle = 75
 
     var score = 0
 
     var drawBall = function(){
+        
         ballvx = Math.sin(ballVA*toRadian)*ballVM
         ballvy = Math.cos(ballVA*toRadian)*ballVM
         ballx += ballvx
         bally += ballvy
-        if (ballx-ballradius < 0 || ballx+ballradius >canvas.width){
+        if (ballx-ballradius < ballradius/10 || ballx+ballradius > canvas.width - ballradius/10){
             ballVA = (360 - ballVA)%360
         }
-        if (bally-ballradius < 0 ){
+        if (bally-ballradius < ballradius/10 ){
             ballVA = (180 - ballVA ) % 360
         }
 
-        if (ballx-ballradius < batx + batwidth/2 && ballx+ballradius > batx - batwidth/2 && bally >= baty-batheight && !(bally > baty+batheight)) {
+        if (ballx-ballradius < batx + batwidth/2 && ballx+ballradius > batx - batwidth/2 && bally >= baty-ballradius && !(bally > baty+ballradius)) {
             var halfbat = batwidth/2
             var diffCenter = Math.abs(ballx - batx)
             var fraction = diffCenter/halfbat
@@ -62,8 +63,12 @@ var createGame = function(canvas){
     }
 
     var drawScore = function(){
-        c.font = "48px serif"
+        c.font = "48px sans-serif"
         c.fillText("Score: " + score, 10, 50)
+    }
+
+    var updateSpeed = function(){
+        ballVM += 0.001
     }
 
     var update = function(){
@@ -71,6 +76,7 @@ var createGame = function(canvas){
         drawBall()
         drawBat()
         drawScore()
+        updateSpeed()
     }
 
 	canvas.addEventListener('mousemove',function(e){
