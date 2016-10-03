@@ -45,7 +45,6 @@ var createGame = function(canvas){
             else{
                 ballVA = 180
             }
-            //ballVA = (180 - ballVA ) % 360
             score += ballVM
         }
 
