@@ -21,7 +21,7 @@ var createGame = function(canvas){
     var score = 0
 
     var drawBall = function(){
-        
+
         ballvx = Math.sin(ballVA*toRadian)*ballVM
         ballvy = Math.cos(ballVA*toRadian)*ballVM
         ballx += ballvx
@@ -64,7 +64,7 @@ var createGame = function(canvas){
 
     var drawScore = function(){
         c.font = "48px sans-serif"
-        c.fillText("Score: " + score, 10, 50)
+        c.fillText("Score: " + Math.floor(score), 10, 50)
     }
 
     var updateSpeed = function(){
