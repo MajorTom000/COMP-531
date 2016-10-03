@@ -5,22 +5,49 @@ var createGame = function(canvas){
     var ballx = canvas.width/2 //initial ball position
     var bally = canvas.height/2
     var ballradius = 20
-    var ballvx = 20 //initial ball velocity
-    var ballvy = 20
+    var ballVM = 10
+    var ballVA = Math.random()*360
+    var toRadian = (Math.PI/180)
+    var ballvx = Math.sin(ballVA*toRadian)*ballVM //ball velocity are represented as unit vector multiply by magnitude
+    var ballvy = Math.cos(ballVA*toRadian)*ballVM
 
     var batx = canvas.width/2
     var baty = canvas.height - 40
     var batwidth = 100
     var batheight = 20
 
+    const reflectAngle = 75
+
+    var score = 0
 
     var drawBall = function(){
+        ballvx = Math.sin(ballVA*toRadian)*ballVM
+        ballvy = Math.cos(ballVA*toRadian)*ballVM
         ballx += ballvx
         bally += ballvy
-        if (ballx-ballradius < 0 || ballx+ballradius >canvas.width) ballvx *= -1
-        if (bally-ballradius < 0 ) ballvy *= -1
+        if (ballx-ballradius < 0 || ballx+ballradius >canvas.width){
+            ballVA = (360 - ballVA)%360
+        }
+        if (bally-ballradius < 0 ){
+            ballVA = (180 - ballVA ) % 360
+        }
 
-        if (ballx < batx + batwidth/2 && ballx > batx - batwidth/2 && bally >= baty-batheight && !(bally > baty+batheight)) ballvy *=-1
+        if (ballx-ballradius < batx + batwidth/2 && ballx+ballradius > batx - batwidth/2 && bally >= baty-batheight && !(bally > baty+batheight)) {
+            var halfbat = batwidth/2
+            var diffCenter = Math.abs(ballx - batx)
+            var fraction = diffCenter/halfbat
+            if (ballx < batx){
+                ballVA = 180 + fraction * reflectAngle
+            }
+            else if (ballx > batx){
+                ballVA = 180 - fraction * reflectAngle
+            }
+            else{
+                ballVA = 180
+            }
+            //ballVA = (180 - ballVA ) % 360
+            score += ballVM
+        }
 
         c.beginPath()
         c.arc(ballx,bally,ballradius,0,Math.PI*2)
@@ -35,11 +62,16 @@ var createGame = function(canvas){
         c.fillRect(batx-batwidth/2, baty-batheight/2, batwidth, batheight);
     }
 
+    var drawScore = function(){
+        c.font = "48px serif"
+        c.fillText("Score: " + score, 10, 50)
+    }
 
     var update = function(){
         c.clearRect(0,0,canvas.width,canvas.height)
         drawBall()
         drawBat()
+        drawScore()
     }
 
 	canvas.addEventListener('mousemove',function(e){
@@ -56,5 +88,5 @@ var createGame = function(canvas){
 
 window.onload = function(){
 	var app = createGame(document.querySelector("canvas"))
-	setInterval(app.update, 50)
+	setInterval(app.update, 20)
 }
