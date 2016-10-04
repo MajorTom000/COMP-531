@@ -10,7 +10,7 @@ var createGame = function(canvas){
     var baty = canvas.height - 40
     var batwidth = 100
     var batheight = 10
-
+    var originalBatWitdh = 100
     //max reflecting angle for the bat
     const reflectAngle = 75
 
@@ -27,6 +27,9 @@ var createGame = function(canvas){
 
     //all the balls currently in the game
     var balls = [] 
+
+    //bat power up 
+    var powerUpTimeLeft = 0
 
     //function that returns a new ball
     //the ball's speed is based on the unit vector in a unit circle
@@ -53,11 +56,17 @@ var createGame = function(canvas){
                     element.ballvy = Math.cos(element.ballVA*toRadian)*element.ballVM
                     element.ballx += element.ballvx
                     element.bally += element.ballvy
-                    if (element.ballx-element.ballradius < element.ballradius/10 || element.ballx+element.ballradius > canvas.width - element.ballradius/10){
+                    if (element.ballx-element.ballradius < 0){
                         element.ballVA = (360 - element.ballVA)%360
+                        element.ballx = element.ballradius
                     }
-                    if (element.bally-element.ballradius < element.ballradius/10 ){
-                        element.ballVA = (180 - element.ballVA ) % 360
+                    if (element.ballx+element.ballradius > canvas.width){
+                        element.ballVA = (360 - element.ballVA)%360
+                        element.ballx = canvas.width - element.ballradius
+                    }
+                    if (element.bally-element.ballradius < 0 ){
+                        element.ballVA = (180 - element.ballVA )%360
+                        element.bally = element.ballradius
                     }
 
                     if (element.ballx-element.ballradius < batx + batwidth/2 && element.ballx+element.ballradius > batx - batwidth/2 && element.bally >= baty-element.ballradius && !(element.bally > baty+element.ballradius)) {
@@ -116,6 +125,22 @@ var createGame = function(canvas){
         })
     }
 
+    var updatePowerUp = function(){
+        if (Math.floor(time/1000)%60 == 0){
+            powerUpTimeLeft = 10000
+        }
+        else{
+            powerUpTimeLeft -= timeFrame
+        }
+
+        if (powerUpTimeLeft >= 0){
+            batwidth = 200
+        }
+        else{
+            batwidth = originalBatWitdh
+        }
+    }
+
     var drawGameOver = function(){
         c.font = "60px sans-serif"
         c.fillText("Game Over", 250, canvas.height/2)
@@ -142,6 +167,7 @@ var createGame = function(canvas){
             drawScore()
             drawTime()
             updateSpeed()
+            updatePowerUp()
             markGarbageBalls(balls)
         }
 
@@ -157,7 +183,19 @@ var createGame = function(canvas){
 
 	canvas.addEventListener('mousemove',function(e){
 		var x = e.pageX - canvas.offsetLeft
-		batx = x
+
+        if (x < batwidth/2){
+            batx = batwidth/2 + 2
+        }
+        else if (x > canvas.width - batwidth/2){
+            batx = canvas.width - batwidth/2 -2
+        }
+        else{
+            batx = x
+        }
+
+		
+
 	})
 
     canvas.addEventListener('click',function(e){
