@@ -1,15 +1,10 @@
+const timeFrame = 20
+
 var createGame = function(canvas){
 
     var c = canvas.getContext("2d")
 
-    var ballx = canvas.width/2 //initial ball position
-    var bally = canvas.height/2
-    var ballradius = 20
-    var ballVM = 10
-    var ballVA = Math.random()*360
-    var toRadian = (Math.PI/180)
-    var ballvx = Math.sin(ballVA*toRadian)*ballVM //ball velocity are represented as unit vector multiply by magnitude
-    var ballvy = Math.cos(ballVA*toRadian)*ballVM
+    const toRadian = (Math.PI/180)
 
     var batx = canvas.width/2
     var baty = canvas.height - 40
@@ -19,41 +14,67 @@ var createGame = function(canvas){
     const reflectAngle = 75
 
     var score = 0
+    var time = 0
 
-    var drawBall = function(){
+    var paused = false
+    //all the balls currently in the game
+    var balls = [] 
 
-        ballvx = Math.sin(ballVA*toRadian)*ballVM
-        ballvy = Math.cos(ballVA*toRadian)*ballVM
-        ballx += ballvx
-        bally += ballvy
-        if (ballx-ballradius < ballradius/10 || ballx+ballradius > canvas.width - ballradius/10){
-            ballVA = (360 - ballVA)%360
+    //function that returns a new ball
+    var getNewBall = function(){
+        return {
+            outofbound : false,
+            ballx : canvas.width/2,
+            bally : canvas.height/2,
+            ballradius : 20,
+            ballVM : 10,
+            ballVA : (Math.random()*90 - 90)%360,
+            ballvx : Math.sin(this.ballVA*toRadian)*this.ballVM,
+            ballvy : Math.cos(this.ballVA*toRadian)*this.ballVM
         }
-        if (bally-ballradius < ballradius/10 ){
-            ballVA = (180 - ballVA ) % 360
-        }
+    }
 
-        if (ballx-ballradius < batx + batwidth/2 && ballx+ballradius > batx - batwidth/2 && bally >= baty-ballradius && !(bally > baty+ballradius)) {
-            var halfbat = batwidth/2
-            var diffCenter = Math.abs(ballx - batx)
-            var fraction = diffCenter/halfbat
-            if (ballx < batx){
-                ballVA = 180 + fraction * reflectAngle
-            }
-            else if (ballx > batx){
-                ballVA = 180 - fraction * reflectAngle
-            }
-            else{
-                ballVA = 180
-            }
-            score += ballVM
-        }
+    balls.push(getNewBall())
 
-        c.beginPath()
-        c.arc(ballx,bally,ballradius,0,Math.PI*2)
-        c.closePath()
-        c.fillStyle='black'
-        c.fill()
+    var drawBall = function(items){
+        items.forEach(
+            function(element, index){
+                if (!element.outofbound){
+                    element.ballvx = Math.sin(element.ballVA*toRadian)*element.ballVM
+                    element.ballvy = Math.cos(element.ballVA*toRadian)*element.ballVM
+                    element.ballx += element.ballvx
+                    element.bally += element.ballvy
+                    if (element.ballx-element.ballradius < element.ballradius/10 || element.ballx+element.ballradius > canvas.width - element.ballradius/10){
+                        element.ballVA = (360 - element.ballVA)%360
+                    }
+                    if (element.bally-element.ballradius < element.ballradius/10 ){
+                        element.ballVA = (180 - element.ballVA ) % 360
+                    }
+
+                    if (element.ballx-element.ballradius < batx + batwidth/2 && element.ballx+element.ballradius > batx - batwidth/2 && element.bally >= baty-element.ballradius && !(element.bally > baty+element.ballradius)) {
+                        var halfbat = batwidth/2
+                        var diffCenter = Math.abs(element.ballx - batx)
+                        var fraction = diffCenter/halfbat
+                        if (element.ballx < batx){
+                            element.ballVA = 180 + fraction * reflectAngle
+                        }
+                        else if (element.ballx > batx){
+                            element.ballVA = 180 - fraction * reflectAngle
+                        }
+                        else{
+                            element.ballVA = 180
+                        }
+                        score += element.ballVM
+                    }
+
+                    c.beginPath()
+                    c.arc(element.ballx,element.bally,element.ballradius,0,Math.PI*2)
+                    c.closePath()
+                    c.fillStyle='black'
+                    c.fill()
+                }
+            }
+        )
     }
 
 
@@ -68,30 +89,49 @@ var createGame = function(canvas){
     }
 
     var updateSpeed = function(){
-        ballVM += 0.001
+        balls.forEach((e)=>{e.ballVM += 0.002})
+    }
+
+    var drawTime = function(){
+        c.font = "48px sans-serif"
+        c.fillText("Time: " + Math.floor(time/1000), 500, 50)
+        time += timeFrame
     }
 
     var update = function(){
-        c.clearRect(0,0,canvas.width,canvas.height)
-        drawBall()
-        drawBat()
-        drawScore()
-        updateSpeed()
+        if(!paused){
+            c.clearRect(0,0,canvas.width,canvas.height)
+            drawBall(balls)
+            drawBat()
+            drawScore()
+            drawTime()
+            updateSpeed()
+        }
     }
 
 	canvas.addEventListener('mousemove',function(e){
-		var x = e.pageX - canvas.offsetLeft;
-		//var y = e.pageY - canvas.offsetTop;
+		var x = e.pageX - canvas.offsetLeft
 		batx = x
 	})
 
+    canvas.addEventListener('click',function(e){
+        balls.push(getNewBall())
+    })
+
+    var togglePause = function(){
+        paused = !paused
+    }
+
     return {
-        update
+        update,
+        togglePause
     }
 }
 
 
 window.onload = function(){
 	var app = createGame(document.querySelector("canvas"))
-	setInterval(app.update, 20)
+
+    document.getElementById('pause').addEventListener('click',app.togglePause)
+	setInterval(app.update, timeFrame)
 }
