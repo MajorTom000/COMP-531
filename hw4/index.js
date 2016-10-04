@@ -19,6 +19,7 @@ var createGame = function(canvas){
     var ballsLeftInScene = 1
     var score = 0
     var time = 0
+    var lastTimeAdded = 0
 
     //if the game is paused
     var paused = false
@@ -36,7 +37,7 @@ var createGame = function(canvas){
             bally : canvas.height/2,
             ballradius : 20,
             ballVM : 10,
-            ballVA : (Math.random()*90 - 90)%360,
+            ballVA : (Math.random()*90 - 45)%360,
             ballvx : Math.sin(this.ballVA*toRadian)*this.ballVM,
             ballvy : Math.cos(this.ballVA*toRadian)*this.ballVM
         }
@@ -108,7 +109,7 @@ var createGame = function(canvas){
 
     var markGarbageBalls = function(items){
         items.forEach((element)=>{
-            if (element.bally > canvas.height + 40) {
+            if (!element.outofbound  && element.bally > canvas.height + 40) {
                 element.outofbound = true
                 ballsLeftInScene--
             }
@@ -122,9 +123,20 @@ var createGame = function(canvas){
         c.fillText("Time:  " + Math.floor(time/1000), 250, canvas.height/2+120)
     }
 
+    var addBall = function(){
+        if (time - lastTimeAdded > 20000 && totalBallsAdded <= 6){
+            lastTimeAdded = time
+            balls.push(getNewBall())
+            totalBallsAdded++
+            ballsLeftInScene++
+        }
+    }
+
     var update = function(){
-        c.clearRect(0,0,canvas.width,canvas.height)
+        
         if(!paused && !gameover){
+            c.clearRect(0,0,canvas.width,canvas.height)
+            addBall()
             drawBall(balls)
             drawBat()
             drawScore()
@@ -134,6 +146,7 @@ var createGame = function(canvas){
         }
 
         if (gameover){
+            c.clearRect(0,0,canvas.width,canvas.height)
             drawGameOver()
         }
 
@@ -149,6 +162,7 @@ var createGame = function(canvas){
 
     canvas.addEventListener('click',function(e){
         balls.push(getNewBall())
+        ballsLeftInScene++
     })
 
     var togglePause = function(){
