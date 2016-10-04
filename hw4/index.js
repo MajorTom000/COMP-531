@@ -11,16 +11,24 @@ var createGame = function(canvas){
     var batwidth = 100
     var batheight = 10
 
+    //max reflecting angle for the bat
     const reflectAngle = 75
 
+    //score and time
+    var totalBallsAdded = 1
+    var ballsLeftInScene = 1
     var score = 0
     var time = 0
 
+    //if the game is paused
     var paused = false
+    var gameover = false
+
     //all the balls currently in the game
     var balls = [] 
 
     //function that returns a new ball
+    //the ball's speed is based on the unit vector in a unit circle
     var getNewBall = function(){
         return {
             outofbound : false,
@@ -98,14 +106,39 @@ var createGame = function(canvas){
         time += timeFrame
     }
 
+    var markGarbageBalls = function(items){
+        items.forEach((element)=>{
+            if (element.bally > canvas.height + 40) {
+                element.outofbound = true
+                ballsLeftInScene--
+            }
+        })
+    }
+
+    var drawGameOver = function(){
+        c.font = "60px sans-serif"
+        c.fillText("Game Over", 250, canvas.height/2)
+        c.fillText("Score: " + Math.floor(score), 250, canvas.height/2+60)
+        c.fillText("Time:  " + Math.floor(time/1000), 250, canvas.height/2+120)
+    }
+
     var update = function(){
-        if(!paused){
-            c.clearRect(0,0,canvas.width,canvas.height)
+        c.clearRect(0,0,canvas.width,canvas.height)
+        if(!paused && !gameover){
             drawBall(balls)
             drawBat()
             drawScore()
             drawTime()
             updateSpeed()
+            markGarbageBalls(balls)
+        }
+
+        if (gameover){
+            drawGameOver()
+        }
+
+        if (ballsLeftInScene == 0){
+            gameover = true
         }
     }
 
