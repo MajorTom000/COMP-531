@@ -206,11 +206,6 @@ var createGame = function(canvas){
         }
 	})
 
-    canvas.addEventListener('click',function(e){
-        balls.push(getNewBall())
-        ballsLeftInScene++
-    })
-
     var togglePause = function(){
         paused = !paused
     }
