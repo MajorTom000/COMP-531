@@ -12,3 +12,12 @@
     margin-right: auto;
     display: block;
 }
+
+body{
+    text-align: center;
+    font-weight: bolder;
+}
+
+span{
+    color:red;
+}

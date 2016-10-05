@@ -146,6 +146,7 @@ var createGame = function(canvas){
         c.fillText("Game Over", 250, canvas.height/2)
         c.fillText("Score: " + Math.floor(score), 250, canvas.height/2+60)
         c.fillText("Time:  " + Math.floor(time/1000), 250, canvas.height/2+120)
+        c.fillText("Score/Sec: " + Math.floor(score/(time/1000)), 250, canvas.height/2+180 )
     }
 
     var addBall = function(){
