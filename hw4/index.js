@@ -48,6 +48,8 @@ var createGame = function(canvas){
 
     balls.push(getNewBall())
 
+    //draw the ball 
+    //handle collision
     var drawBall = function(items){
         items.forEach(
             function(element, index){
@@ -95,27 +97,31 @@ var createGame = function(canvas){
         )
     }
 
-
+    //draw bat
     var drawBat = function(){
         c.fillStyle = 'black'
         c.fillRect(batx-batwidth/2, baty-batheight/2, batwidth, batheight);
     }
+
 
     var drawScore = function(){
         c.font = "48px sans-serif"
         c.fillText("Score: " + Math.floor(score), 10, 50)
     }
 
+    //increase the speed of each ball overtime
     var updateSpeed = function(){
         balls.forEach((e)=>{e.ballVM += 0.002})
     }
 
+    //draw and update time
     var drawTime = function(){
         c.font = "48px sans-serif"
         c.fillText("Time: " + Math.floor(time/1000), 500, 50)
         time += timeFrame
     }
 
+    //mark out-of-bound balls
     var markGarbageBalls = function(items){
         items.forEach((element)=>{
             if (!element.outofbound  && element.bally > canvas.height + 40) {
@@ -125,6 +131,7 @@ var createGame = function(canvas){
         })
     }
 
+    //extend bat at the beginning 10 seconds of each minute
     var updatePowerUp = function(){
         if (Math.floor(time/1000)%60 == 0){
             powerUpTimeLeft = 10000
@@ -141,6 +148,7 @@ var createGame = function(canvas){
         }
     }
 
+    //game over screen
     var drawGameOver = function(){
         c.font = "60px sans-serif"
         c.fillText("Game Over", 250, canvas.height/2)
@@ -149,6 +157,7 @@ var createGame = function(canvas){
         c.fillText("Score/Sec: " + Math.floor(score/(time/1000)), 250, canvas.height/2+180 )
     }
 
+    //add a new ball every 20 seconds
     var addBall = function(){
         if (time - lastTimeAdded > 20000 && totalBallsAdded <= 6){
             lastTimeAdded = time
@@ -158,6 +167,7 @@ var createGame = function(canvas){
         }
     }
 
+    //update
     var update = function(){
         
         if(!paused && !gameover){
@@ -194,9 +204,6 @@ var createGame = function(canvas){
         else{
             batx = x
         }
-
-		
-
 	})
 
     canvas.addEventListener('click',function(e){
@@ -207,7 +214,6 @@ var createGame = function(canvas){
     var togglePause = function(){
         paused = !paused
     }
-
     return {
         update,
         togglePause
