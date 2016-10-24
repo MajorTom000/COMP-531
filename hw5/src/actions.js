@@ -1,7 +1,7 @@
 import Promise from 'bluebird'
 import fetch from 'isomorphic-fetch'
 
-export const url = 'https://webdev-dummy.herokuapp.com'
+export const url = 'https://webdev-dummy.herokuapp.com2'
 
 export const resource = (method, endpoint, payload) => {
   const options =  {
@@ -12,6 +12,7 @@ export const resource = (method, endpoint, payload) => {
     }
   }
   if (payload) options.body = JSON.stringify(payload)
+
 
   return fetch(`${url}/${endpoint}`, options)
     .then(r => {

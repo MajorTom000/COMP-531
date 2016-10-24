@@ -24,9 +24,6 @@ export function init(){
 
 
 export function LoginAction(username, password){
-
-    console.log(username, password)
-
     return (dispatch) =>{
         resource('POST','login',{username, password})
         .then((response)=>{

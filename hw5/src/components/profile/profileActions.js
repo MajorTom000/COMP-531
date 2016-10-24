@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { resource } from '../../actions'
+import resource from '../../actions'
 
 export const fetchProfile = () => {
     return (dispatch)=>{
