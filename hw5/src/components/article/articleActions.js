@@ -37,3 +37,22 @@ export function fetchArticles(){
 export function searchKeyword(keyword){
     return {type:'SEARCH_BY_KEYWORD', keyword}
 }
+
+export function addArticle(message, file){
+    if (message == '') return {type:''};
+
+    return (dispatch, getState) => {
+        const date = new Date()
+        const article = {
+            _id: Math.floor(Math.random * 10000000),
+            author: getState().profile.username,
+            comments: [],
+            date: date.toUTCString(),
+            img: file,
+            text: message
+        }
+
+        dispatch({type:'ADD_ARTICLE', article})
+    }
+
+}

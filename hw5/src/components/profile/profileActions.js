@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { resource } from '../../actions'
 
 export const fetchProfile = () => {
-    console.log("called")
     return (dispatch)=>{
         dispatch(fetchProfileField('avatars'))
         dispatch(fetchProfileField('zipcode'))

@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import {addArticle} from './articleActions'
 
 export const NewArticle = ({dispatch})=> {
 
-    let newArticleText;
-    let newArticleImage;
-
+    let newArticleText
+    let newArticleImage
     return (
         <div className="row">
             <div className="col s12 m12">
@@ -21,18 +21,17 @@ export const NewArticle = ({dispatch})=> {
                             </div>
                         </div>
                         <div className="card-action">
-                            <a >Post</a>
-                            <a onClick = {()=>{newArticleText.value = ''; newArticleImage.value=''}}>Cancel</a>
+                            <button className="btn" onClick = { ()=>{dispatch(addArticle(newArticleText.value, newArticleImage.value))
+                                newArticleText.value = ''
+                                newArticleImage.value = '' 
+                            }}>Post</button>
+                            <button className="btn right" onClick = {()=>{newArticleText.value = ''; newArticleImage.value=''}}>Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     )  
-}
-
-NewArticle.PropTypes = {
-
 }
 
 export default connect()(NewArticle)
