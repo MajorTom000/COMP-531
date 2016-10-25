@@ -24563,7 +24563,6 @@
 	
 	function common() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-	        nextId: 10,
 	        title: "Front-End Application",
 	        error: '',
 	        success: '',
@@ -24618,7 +24617,8 @@
 	        image: '',
 	        email: '',
 	        zipcode: '',
-	        headline: ''
+	        headline: '',
+	        dob: ''
 	    };
 	    var action = arguments[1];
 	
@@ -24633,6 +24633,7 @@
 	            if (action.zipcode) return _extends({}, state, { zipcode: parseInt(action.zipcode) });
 	            if (action.phone) return _extends({}, state, { phone: action.phone });
 	            if (action.email) return _extends({}, state, { email: action.email });
+	            if (action.dob) return _extends({}, state, { dob: action.dob });
 	
 	        default:
 	            return state;
@@ -24692,8 +24693,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var App = exports.App = function App(_ref) {
-	    var location = _ref.location;
-	    var title = _ref.title;
+	    var location = _ref.location,
+	        title = _ref.title;
 	
 	
 	    if (location == "MAIN_PAGE") {
@@ -24950,8 +24951,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Login = exports.Login = function Login(_ref) {
-	    var dispatch = _ref.dispatch;
-	    var error = _ref.error;
+	    var dispatch = _ref.dispatch,
+	        error = _ref.error;
 	
 	    var username = void 0;
 	    var password = void 0;
@@ -25022,6 +25023,7 @@
 	exports.init = init;
 	exports.LoginAction = LoginAction;
 	exports.LogoutAction = LogoutAction;
+	exports.Register = Register;
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -25048,8 +25050,8 @@
 	            dispatch((0, _followingActions.fetchFollowers)());
 	            dispatch((0, _articleActions.fetchArticles)());
 	        }).catch(function (err) {
-	            console.log(err);
-	            console.log(err.stack);
+	            //console.log(err)
+	            //console.log(err.stack)
 	        });
 	    };
 	}
@@ -25060,7 +25062,8 @@
 	            dispatch({ type: 'LOG_IN', username: response.username });
 	            dispatch(init());
 	        }).catch(function (err) {
-	            dispatch({ type: 'ON_ERROR', error: 'Username/Password not correct' });
+	            console.log(err);
+	            dispatch({ type: 'ON_ERROR', error: 'Error Logging in as ' + username });
 	        });
 	    };
 	}
@@ -25070,6 +25073,14 @@
 	        (0, _actions.resource)('PUT', 'logout').then(dispatch({ type: 'TO_OUT' })).catch(function (err) {
 	            dispatch({ type: 'LOG_IN', username: undefined });
 	            dispatch({ type: 'TO_OUT' });
+	        });
+	    };
+	}
+	
+	function Register(data) {
+	    return function (dispatch) {
+	        (0, _actions.resource)('POST', 'register', data).then(dispatch({ type: 'ON_SUCCESS', success: 'successfully registered' })).catch(function (err) {
+	            dispatch({ type: 'ON_ERROR', error: 'there is something wrong' });
 	        });
 	    };
 	}
@@ -25100,7 +25111,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var url = exports.url = 'https://webdev-dummy.herokuapp.com2';
+	var url = exports.url = 'https://webdev-dummy.herokuapp.com';
 	
 	var resource = exports.resource = function resource(method, endpoint, payload) {
 	  var options = {
@@ -25117,7 +25128,7 @@
 	      return r.headers.get('Content-Type').indexOf('json') > 0 ? r.json() : r.text();
 	    } else {
 	      // useful for debugging, but remove in production
-	      console.error(method + ' ' + endpoint + ' ' + r.statusText);
+	      //console.error(`${method} ${endpoint} ${r.statusText}`)
 	      throw new Error(r.statusText);
 	    }
 	  });
@@ -31297,6 +31308,8 @@
 	
 	var _actions = __webpack_require__(/*! ../../actions */ 209);
 	
+	var _actions2 = _interopRequireDefault(_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var fetchProfile = exports.fetchProfile = function fetchProfile() {
@@ -31304,6 +31317,7 @@
 	        dispatch(fetchProfileField('avatars'));
 	        dispatch(fetchProfileField('zipcode'));
 	        dispatch(fetchProfileField('email'));
+	        dispatch(fetchProfileField('dob'));
 	    };
 	};
 	
@@ -31318,7 +31332,7 @@
 	        if (value) {
 	            var payload = {};
 	            payload[field] = value;
-	            (0, _actions.resource)('PUT', field, payload).then(function (response) {
+	            (0, _actions2.default)('PUT', field, payload).then(function (response) {
 	                var action = { type: 'UPDATE_PROFILE' };
 	                action[field] = response[field];
 	                dispatch(action);
@@ -31329,7 +31343,7 @@
 	
 	function fetchProfileField(field) {
 	    return function (dispatch) {
-	        (0, _actions.resource)('GET', field).then(function (response) {
+	        (0, _actions2.default)('GET', field).then(function (response) {
 	            var action = { type: 'UPDATE_PROFILE' };
 	            switch (field) {
 	                case 'avatars':
@@ -31340,6 +31354,9 @@
 	                    break;
 	                case 'zipcode':
 	                    action.zipcode = response.zipcode;
+	                    break;
+	                case 'dob':
+	                    action.dob = response.dob;
 	                    break;
 	            }
 	
@@ -31487,6 +31504,8 @@
 	                    dispatch({ type: 'UPDATE_AVATARS', avatars: avatars });
 	                });
 	            }
+	        }).catch(function (err) {
+	            console.log(err);
 	        });
 	    };
 	}
@@ -31498,11 +31517,10 @@
 	function addArticle(message, file) {
 	    if (message == '') return { type: '' };
 	
-	    return function (dispatch, getState) {
+	    return function (dispatch) {
 	        var date = new Date();
 	        var article = {
-	            _id: Math.floor(Math.random * 10000000),
-	            author: getState().profile.username,
+	            _id: Math.floor(Math.random() * 10000000),
 	            comments: [],
 	            date: date.toUTCString(),
 	            img: file,
@@ -31589,10 +31607,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Avatar = exports.Avatar = function Avatar(_ref) {
-	    var username = _ref.username;
-	    var image = _ref.image;
-	    var email = _ref.email;
-	    var zipcode = _ref.zipcode;
+	    var username = _ref.username,
+	        image = _ref.image,
+	        email = _ref.email,
+	        zipcode = _ref.zipcode;
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'primary userprofile center-align' },
@@ -31835,8 +31853,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var ProfileNav = exports.ProfileNav = function ProfileNav(_ref) {
-	    var title = _ref.title;
-	    var toHome = _ref.toHome;
+	    var title = _ref.title,
+	        toHome = _ref.toHome;
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'navbar-fixed' },
@@ -31987,8 +32005,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Nav = exports.Nav = function Nav(_ref) {
-	    var title = _ref.title;
-	    var dispatch = _ref.dispatch;
+	    var title = _ref.title,
+	        dispatch = _ref.dispatch;
 	
 	    var keyword = '';
 	    return _react2.default.createElement(
@@ -32106,9 +32124,6 @@
 	    }
 	
 	    _createClass(MobileNav, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -32206,11 +32221,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var UserView = exports.UserView = function UserView(_ref) {
-	    var dispatch = _ref.dispatch;
-	    var name = _ref.name;
-	    var image = _ref.image;
-	    var email = _ref.email;
-	    var headline = _ref.headline;
+	    var dispatch = _ref.dispatch,
+	        name = _ref.name,
+	        image = _ref.image,
+	        email = _ref.email,
+	        headline = _ref.headline;
 	
 	
 	    var newHeadline = void 0;
@@ -32279,10 +32294,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Following = exports.Following = function Following(_ref) {
-	    var dispatch = _ref.dispatch;
-	    var name = _ref.name;
-	    var headline = _ref.headline;
-	    var image = _ref.image;
+	    var dispatch = _ref.dispatch,
+	        name = _ref.name,
+	        headline = _ref.headline,
+	        image = _ref.image;
 	    return _react2.default.createElement(
 	        'li',
 	        { className: 'collection-item avatar' },
@@ -32353,13 +32368,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var SideNav = exports.SideNav = function SideNav(_ref) {
-	    var currentUser = _ref.currentUser;
-	    var followers = _ref.followers;
-	    var name = _ref.name;
-	    var image = _ref.image;
-	    var headline = _ref.headline;
-	    var error = _ref.error;
-	    var dispatch = _ref.dispatch;
+	    var currentUser = _ref.currentUser,
+	        followers = _ref.followers,
+	        name = _ref.name,
+	        image = _ref.image,
+	        headline = _ref.headline,
+	        error = _ref.error,
+	        dispatch = _ref.dispatch;
 	
 	    var newUser = void 0;
 	    return _react2.default.createElement(
@@ -32458,9 +32473,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var ArticlesView = exports.ArticlesView = function ArticlesView(_ref) {
-	    var username = _ref.username;
-	    var articles = _ref.articles;
-	    var dispatch = _ref.dispatch;
+	    var username = _ref.username,
+	        articles = _ref.articles,
+	        dispatch = _ref.dispatch;
 	
 	
 	    var keyword = void 0;
@@ -32657,12 +32672,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Comment = exports.Comment = function Comment(_ref) {
-	    var username = _ref.username;
-	    var commentId = _ref.commentId;
-	    var author = _ref.author;
-	    var date = _ref.date;
-	    var text = _ref.text;
-	    var avatar = _ref.avatar;
+	    var username = _ref.username,
+	        commentId = _ref.commentId,
+	        author = _ref.author,
+	        date = _ref.date,
+	        text = _ref.text,
+	        avatar = _ref.avatar;
 	
 	
 	    return _react2.default.createElement(
@@ -32794,8 +32809,6 @@
 	        )
 	    );
 	};
-	
-	exports.default = (0, _reactRedux.connect)()(NewArticle);
 
 /***/ },
 /* 231 */

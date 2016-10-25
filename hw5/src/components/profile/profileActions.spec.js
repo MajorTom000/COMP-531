@@ -48,6 +48,7 @@ describe('Test profileActions', () => {
         const avatar = 'img'
         const zipcode = '12345'
         const email = 'abc@abc.abc'
+        const dob = '123456'
 
         mock(`${url}/avatars`, {
             method: 'GET',
@@ -65,6 +66,12 @@ describe('Test profileActions', () => {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
             json: {email}
+        })
+
+        mock(`${url}/dob`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            json: {dob}
         })
 
 
@@ -87,6 +94,12 @@ describe('Test profileActions', () => {
                 else if (callCount == 2){
                     expect(action).to.eql({
                         email, type:'UPDATE_PROFILE'
+                    })
+                    callCount++
+                }
+                else if (callCount == 3){
+                    expect(action).to.eql({
+                        dob, type:'UPDATE_PROFILE'
                     })
                     callCount++
                     done()

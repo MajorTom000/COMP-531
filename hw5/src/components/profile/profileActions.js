@@ -7,6 +7,7 @@ export const fetchProfile = () => {
         dispatch(fetchProfileField('avatars'))
         dispatch(fetchProfileField('zipcode'))
         dispatch(fetchProfileField('email'))
+        dispatch(fetchProfileField('dob'))
     }
 }
 
@@ -41,6 +42,9 @@ function fetchProfileField(field){
                     break;
                 case 'zipcode':
                     action.zipcode = response.zipcode;
+                    break;
+                case 'dob':
+                    action.dob = response.dob;
                     break;
             }
 

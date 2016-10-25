@@ -50,7 +50,8 @@ function profile(state = {
         image: '',
         email: '',
         zipcode: '',
-        headline: ''
+        headline: '',
+        dob: ''
 },action){
     switch(action.type){
         case 'LOG_IN':
@@ -63,6 +64,7 @@ function profile(state = {
             if (action.zipcode) return { ...state, zipcode: parseInt(action.zipcode) }
             if (action.phone) return {...state, phone: action.phone}
             if (action.email) return { ...state, email: action.email }
+            if (action.dob) return {...state, dob: action.dob}
 
         default:
             return state

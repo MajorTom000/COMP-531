@@ -20,7 +20,8 @@ const initialState = {
         image: '',
         email: '',
         zipcode: '',
-        headline: ''
+        headline: '',
+        dob:''
     },
     followers:{
         followers: {}
@@ -70,7 +71,7 @@ describe('Test Article Reducer', ()=>{
 
     const newArticles = {...articles, 2: newarticle}
 
-    it('should set the articles', ()=>{
+    it('should add the article', ()=>{
         
         expect(Reducer(Reducer(undefined, {type:'UPDATE_ARTICLES', articles}), {type:'ADD_ARTICLE', article:newarticle})).to.eql({...initialState, articles: {...initialState.articles, articles:newArticles}})
     })
