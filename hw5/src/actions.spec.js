@@ -62,21 +62,31 @@ describe('Test resource', () => {
 
     })
 
-    // it('should not let user to log in without correct credential', (done)=>{
-    //     const username = 'wrongusername'
-    //     const password = 'wrongpass'
+    it('should not let user to log in without correct credential', (done)=>{
+        const username = 'wrongusername'
+        const password = 'wrongpass'
 
-    //     mock(`${url}/login`,{
-    //         method:'POST',
-    //         headers: {'Content-Type':'text/plain'},
-    //         status: 401,
-    //         text: 'Unauthorized'
-    //     })
+        mock(`${url}/login`,{
+            method:'POST',
+            headers: {'Content-Type':'text/plain'},
+            status: 401,
+            statusText: 'Unauthorized'
+        })
 
-    //     resource('POST', 'login', {username, password})
-    //     .then(done)
-    //     .catch(done)
+        resource('POST', 'login', {username, password})
+        .then(
+            null,
+            (err)=>{
+                expect(err).to.eql(new Error('Unauthorized'))    
+            }
+        )
+        .then(done)
+        .catch(done)
+    
+        
 
-    // })
+    })
 
 })
+
+export const setup = (response) => resource = () => new Promise((resolve, reject)=>resolve(response))

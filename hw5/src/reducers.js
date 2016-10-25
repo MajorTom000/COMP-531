@@ -2,7 +2,6 @@ import {combineReducers} from 'redux'
 
 
 function common(state = {
-    nextId: 10,
     title: "Front-End Application",
     error:'',
     success: '',

@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+
 import {LogoutAction} from '../auth/authActions'
 import UserView from './userView'
 import Following from './following'
 
 import {follow} from './followingActions'
+
 
 class MobileNav extends Component{
 
@@ -12,8 +14,6 @@ class MobileNav extends Component{
         super(props)
     }
 
-    componentDidMount(){
-    }
 
     render(){
         return (

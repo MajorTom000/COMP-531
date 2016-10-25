@@ -1,9 +1,8 @@
 import { expect } from 'chai'
 import mockery from 'mockery'
 import fetch, { mock } from 'mock-fetch'
-import * as profileActions from './profileActions'
- 
-let resource, url
+
+let resource, profileActions, url
 describe('Test profileActions', () => {
 
     beforeEach(() => {
@@ -11,8 +10,9 @@ describe('Test profileActions', () => {
             mockery.enable({warnOnUnregistered: false, useCleanCache:true})
             mockery.registerMock('node-fetch', fetch)
             require('node-fetch')
-            resource = require('../../actions').default
-            url = require('../../actions')
+            url = require('../../actions').url
+            resource = require('../../actions').resource
+            profileActions = require('./profileActions')
         }
     })
 
@@ -28,7 +28,6 @@ describe('Test profileActions', () => {
         const username = 'someuser'
         const headline = 'a new headline'
 
-
         mock(`${url}/headline`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -42,6 +41,62 @@ describe('Test profileActions', () => {
             })
             done()
         }))
+    })
+
+    it('should fetch the profile', (done)=>{
+
+        const avatar = 'img'
+        const zipcode = '12345'
+        const email = 'abc@abc.abc'
+
+        mock(`${url}/avatars`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            json: {avatars: [{avatar}]}
+        })
+
+        mock(`${url}/zipcode`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            json: {zipcode}
+        })
+
+        mock(`${url}/email`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            json: {email}
+        })
+
+
+        var callCount = 0
+        profileActions.fetchProfile()(
+            fn => fn((action) =>{
+                if (callCount == 0){
+                    expect(action).to.eql({
+                        image:avatar, type:'UPDATE_PROFILE'
+                    })
+                    callCount++
+                                        
+                }
+                else if (callCount == 1){
+                    expect(action).to.eql({
+                        zipcode, type:'UPDATE_PROFILE'
+                    })
+                    callCount++
+                }
+                else if (callCount == 2){
+                    expect(action).to.eql({
+                        email, type:'UPDATE_PROFILE'
+                    })
+                    callCount++
+                    done()
+                }
+            })
+            
+        )
+
+
+
     })
 
 })

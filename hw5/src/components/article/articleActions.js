@@ -31,6 +31,9 @@ export function fetchArticles(){
                 })
             }
         })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 }
 
@@ -41,11 +44,10 @@ export function searchKeyword(keyword){
 export function addArticle(message, file){
     if (message == '') return {type:''};
 
-    return (dispatch, getState) => {
+    return (dispatch) => {
         const date = new Date()
         const article = {
-            _id: Math.floor(Math.random * 10000000),
-            author: getState().profile.username,
+            _id: Math.floor(Math.random() * 10000000),
             comments: [],
             date: date.toUTCString(),
             img: file,

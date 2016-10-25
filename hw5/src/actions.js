@@ -1,7 +1,7 @@
 import Promise from 'bluebird'
 import fetch from 'isomorphic-fetch'
 
-export const url = 'https://webdev-dummy.herokuapp.com2'
+export const url = 'https://webdev-dummy.herokuapp.com'
 
 export const resource = (method, endpoint, payload) => {
   const options =  {
@@ -20,7 +20,7 @@ export const resource = (method, endpoint, payload) => {
         return (r.headers.get('Content-Type').indexOf('json') > 0) ? r.json() : r.text()
       } else {
         // useful for debugging, but remove in production
-        console.error(`${method} ${endpoint} ${r.statusText}`)
+        //console.error(`${method} ${endpoint} ${r.statusText}`)
         throw new Error(r.statusText)
       }
     })
