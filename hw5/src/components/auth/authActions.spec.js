@@ -23,8 +23,8 @@ describe('Validate authenticate actions', () => {
             mockery.deregisterMock('node-fetch')
             mockery.disable()
         }
-    })
-
+    }) 
+ 
     it('should log in the user', (done)=>{
 
         const username = 'someuser'
