@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {sideNav} from 'materialize-css'
 import {LogoutAction} from '../auth/authActions'
 import UserView from './userView'
 import Following from './following'
@@ -8,44 +7,43 @@ import Following from './following'
 import {follow} from './followingActions'
 
 
-class MobileNav extends Component{
+export const MobileNav = ({dispatch, username, image,email, headline, followers})=>{
     
-
-    constructor(props){
-        super(props)
-        this.show = false
-    }
-
-    componentDidMount(){
-
-        $('.button-Collapse').sideNav()
-    }
-
-
-    render(){
         return (
-            <ul className="side-nav" id="mobile-menu">
-                <li><a onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</a></li>
-                <li><a onClick={()=>LogoutAction()}>Logout</a></li>
-                <li className="black-text">
-                    <UserView name={this.name} image={this.image} headline={this.headline}/>
-                </li>
-                <li>
+            <div className="container hide-on-large-only">
+                <div className="row">
+                    <div className="card-panel blue white-text center-align" onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</div>
+                </div>
+                <div className="row">
+                    <div className="card-panel blue white-text center-align" onClick={()=>LogoutAction()}>Logout</div>
+                </div>
+                <div className="row center-align">
+                    <img className="circle" src={image}/>
+                </div>
+                <div className="row center-align">
+                    <span className="black-text name">{username}</span>
+                    <br/>
+                    <span className="black-text email">{email}</span>
+                </div>
+                <div className="row center-align">
+                    <h5 id="status">{headline}</h5>
+                </div>
+                <div>
                     <ul className="collection">
-                        { Object.keys(this.props.followers).sort().map((f) => this.props.followers[f]).map((follower) =>
-                            <Following key={follower.name}
-                                name={follower.name} image={follower.image} headline={follower.headline} />
-                        )}
+                            { Object.keys(followers).sort().map((f) => followers[f]).map((follower) =>
+                                <Following key={follower.name}
+                                    name={follower.name} image={follower.image} headline={follower.headline} />
+                            )}
                     </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
         )
     }
-}
 
 MobileNav.PropTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
     followers:PropTypes.arrayOf(PropTypes.shape({
         ...Following.propTypes
@@ -57,6 +55,7 @@ export default connect(
     (state)=>{
         return{
             username: state.profile.username,
+            email: state.profile.email,
             image: state.profile.image,
             headline: state.profile.headline,
             followers: state.followers.followers
