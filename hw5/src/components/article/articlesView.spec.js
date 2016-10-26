@@ -4,7 +4,7 @@ import TestUtils from 'react-addons-test-utils'
 import {findDOMNode} from 'react-dom'
 import {expect} from 'chai'
 import {shallow} from 'enzyme'
-import {ArticlesView} from './articlesView'
+import {ArticlesView, filter} from './articlesView'
 import {NewArticle} from './newArticle'
 
 describe('Test ArticlesView', ()=>{
@@ -24,6 +24,14 @@ describe('Test ArticlesView', ()=>{
 
     })
 
+    it('should filter the articles displayed', ()=>{
+        const articles = {1:{_id:1, text:'sometext1', author:'author1', date:'01/01/1990', comments:[]},
+						  2:{_id:2, text:'sometext2 others', author:'author2', date:'01/01/1990', comments:[]}}
+		const keyword = 'others'
+        const avatars = {'author1':'someavatar1', 'author2':'someavatar2'}
+        const username = 'qw12'
+        expect(filter(avatars,keyword,articles,username)).to.eql({username, articles:[{...articles[2],avatar:avatars['author2']}]})
+    })
 
 
 })

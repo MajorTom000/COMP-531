@@ -20,32 +20,32 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">76.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>56/63</span>
+        <span class='fraction'>23/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.59% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>35/37</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">56.25% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/16</span>
+        <span class='fraction'>2/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.11% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/18</span>
+        <span class='fraction'>10/16</span>
       </div>
       <div class='fl pad1y'>
-        <span class="strong">15 statements, 3 functions, 19 branches</span>
+        <span class="strong">6 statements, 1 function, 3 branches</span>
         <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -105,36 +105,46 @@
 56
 57
 58
-59</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+59
+60
+61
+62
+63
+64
+65</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,9 +163,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +177,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-&nbsp;
 import {LogoutAction} from '../auth/authActions'
 import UserView from './userView'
 import Following from './following'
@@ -173,37 +184,43 @@ import Following from './following'
 import {follow} from './followingActions'
 &nbsp;
 &nbsp;
-class MobileNav extends Component{
-&nbsp;
-    constructor(<span class="fstat-no" title="function not covered" >props){</span>
-        super(<span class="cstat-no" title="statement not covered" >props)</span>
-    }
-&nbsp;
-&nbsp;
-    render()<span class="fstat-no" title="function not covered" >{</span>
+export const MobileNav = <span class="fstat-no" title="function not covered" >({<span class="cstat-no" title="statement not covered" >dispatch, username, image,email, headline, followers})=&gt;{</span></span>
+    
         return (
-<span class="cstat-no" title="statement not covered" >            &lt;ul className="side-nav" id="mobile-menu"&gt;</span>
-                &lt;li&gt;&lt;a href="" onClick={<span class="fstat-no" title="function not covered" >()=&gt;<span class="cstat-no" title="statement not covered" >dispatch({type:'TO_PROFILE'})}&gt;Profile&lt;/a&gt;&lt;/li&gt;</span></span>
-                &lt;li&gt;&lt;a href="" onClick={<span class="fstat-no" title="function not covered" >()=&gt;<span class="cstat-no" title="statement not covered" >LogoutAction()}&gt;Logout&lt;/a&gt;&lt;/li&gt;</span></span>
-                &lt;li className="black-text"&gt;
-                    &lt;UserView name={this.name} image={this.image} headline={this.headline}/&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
+<span class="cstat-no" title="statement not covered" >            &lt;div className="container hide-on-large-only"&gt;</span>
+                &lt;div className="row"&gt;
+                    &lt;div className="card-panel blue white-text center-align" onClick={<span class="fstat-no" title="function not covered" >()=&gt;<span class="cstat-no" title="statement not covered" >dispatch({type:'TO_PROFILE'})}&gt;Profile&lt;/div&gt;</span></span>
+                &lt;/div&gt;
+                &lt;div className="row"&gt;
+                    &lt;div className="card-panel blue white-text center-align" onClick={<span class="fstat-no" title="function not covered" >()=&gt;<span class="cstat-no" title="statement not covered" >LogoutAction()}&gt;Logout&lt;/div&gt;</span></span>
+                &lt;/div&gt;
+                &lt;div className="row center-align"&gt;
+                    &lt;img className="circle" src={image}/&gt;
+                &lt;/div&gt;
+                &lt;div className="row center-align"&gt;
+                    &lt;span className="black-text name"&gt;{username}&lt;/span&gt;
+                    &lt;br/&gt;
+                    &lt;span className="black-text email"&gt;{email}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div className="row center-align"&gt;
+                    &lt;h5 id="status"&gt;{headline}&lt;/h5&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
                     &lt;ul className="collection"&gt;
-                        { Object.keys(this.props.followers).sort().map(<span class="fstat-no" title="function not covered" >(f) =&gt; <span class="cstat-no" title="statement not covered" >this.props.followers[f]).map(<span class="fstat-no" title="function not covered" >(follower) =&gt;</span></span></span>
-<span class="cstat-no" title="statement not covered" >                            &lt;Following key={follower.name}</span>
-                                name={follower.name} image={follower.image} headline={follower.headline} /&gt;
-                        )}
+                            { Object.keys(followers).sort().map(<span class="fstat-no" title="function not covered" >(f) =&gt; <span class="cstat-no" title="statement not covered" >followers[f]).map(<span class="fstat-no" title="function not covered" >(follower) =&gt;</span></span></span>
+<span class="cstat-no" title="statement not covered" >                                &lt;Following key={follower.name}</span>
+                                    name={follower.name} image={follower.image} headline={follower.headline} /&gt;
+                            )}
                     &lt;/ul&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
         )
     }
-}
 &nbsp;
 MobileNav.PropTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
     followers:PropTypes.arrayOf(PropTypes.shape({
         ...Following.propTypes
@@ -215,6 +232,7 @@ export default connect(
 <span class="fstat-no" title="function not covered" >    (state)=&gt;{</span>
         return<span class="cstat-no" title="statement not covered" >{</span>
             username: state.profile.username,
+            email: state.profile.email,
             image: state.profile.image,
             headline: state.profile.headline,
             followers: state.followers.followers
@@ -227,7 +245,7 @@ export default connect(
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 25 2016 20:04:30 GMT-0500 (Central Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 26 2016 01:07:33 GMT-0500 (Central Daylight Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
