@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\components\article\article.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/components/article/</a> article.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.78% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>21/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/14</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">7 statements, 1 function, 3 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+&nbsp;
+import {MakeComment, EditArticle} from './articleActions'
+&nbsp;
+import Comment from './comment'
+&nbsp;
+export const Article = React.createClass ({
+            componentWillMount: <span class="fstat-no" title="function not covered" >function(){</span>
+                this.<span class="cstat-no" title="statement not covered" >hideComment = true</span>
+            },
+&nbsp;
+            render:<span class="fstat-no" title="function not covered" >function(){</span>
+                    return (
+<span class="cstat-no" title="statement not covered" >                    &lt;div className="row"&gt;</span>
+                        &lt;div className="col s12 m12"&gt;
+                            &lt;div className="card grey lighten-2"&gt;
+                                &lt;div className="card-image"&gt;
+                                    &lt;img src={this.props.image}/&gt;
+                                &lt;/div&gt;
+                                &lt;div className="card-content black-text"&gt;
+                                    &lt;span className="card-titile"&gt;{this.props.date}, {this.props.author}&lt;/span&gt;
+                                    &lt;p&gt;
+                                        {this.props.text}
+                                    &lt;/p&gt;
+                                &lt;/div&gt;
+                                &lt;div className="card-action"&gt;
+                                    &lt;button className="waves-effect waves-black btn-flat" onClick={<span class="fstat-no" title="function not covered" >()=&gt;{</span>this.<span class="cstat-no" title="statement not covered" >hideComment = !this.hideComment</span>
+                                        this.<span class="cstat-no" title="statement not covered" >forceUpdate()}}&gt;Comments&lt;/button&gt;</span>
+                                    { this.props.username == this.props.author ? 
+                                        &lt;button className="waves-effect waves-black btn-flat" &gt;Edit&lt;/button&gt; : ''
+                                    }
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            {   this.hideComment ? '' :this.props.comments.sort(<span class="fstat-no" title="function not covered" >(x,y)=&gt;{</span>
+                                    return <span class="cstat-no" title="statement not covered" >x.date &lt; y.date ? 1 : x.date &gt; y.date ? -1 : 0;</span>
+                                }).map(<span class="fstat-no" title="function not covered" >(comment)=&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;Comment key={comment.commentId} _id = {comment.commentId} author={comment.author} date={comment.date}</span>
+                                    text={comment.text} avatar={comment.avatar} username={this.props.author}/&gt; 
+                                )
+                            }
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                )
+            }
+})
+&nbsp;
+&nbsp;
+Article.PropTypes = {
+    _id: PropTypes.number.isRequired,
+    date: PropTypes.string,
+    author: PropTypes.string,
+    image: PropTypes.string,
+    text: PropTypes.string,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+        ...Comment.propTypes
+    }).isRequired).isRequired
+}
+&nbsp;
+export default connect()(Article)
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 25 2016 20:04:30 GMT-0500 (Central Daylight Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
