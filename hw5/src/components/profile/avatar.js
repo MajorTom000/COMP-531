@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-export const Avatar = ({username,image, email, zipcode})=>(
+export const Avatar = ({username,image, email,dob, zipcode})=>(
     <div className="primary userprofile center-align">
         <div className="row">
             <img src={image} className="circle responsive-img"/>
@@ -13,6 +13,9 @@ export const Avatar = ({username,image, email, zipcode})=>(
             Display Name:  <span id="p_dname" className="old">{username}</span>
         </div>
         <div className="row">
+            DOB:  <span id="p_email" className="old">{(new Date(dob)).toDateString()}</span>
+        </div>
+        <div className="row">
             Email:  <span id="p_email" className="old">{email}</span>
         </div>
         <div className="row">
@@ -22,11 +25,6 @@ export const Avatar = ({username,image, email, zipcode})=>(
 )
 
 
-Avatar.propTypes = {
-
-
-}
-
 
 export default connect(
     (state)=>{
@@ -34,7 +32,8 @@ export default connect(
             username: state.profile.username,
             image: state.profile.image,
             email: state.profile.email,
-            zipcode: state.profile.zipcode
+            zipcode: state.profile.zipcode,
+            dob: state.profile.dob
         }
     }
 )(Avatar)

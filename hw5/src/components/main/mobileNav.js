@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
+import {sideNav} from 'materialize-css'
 import {LogoutAction} from '../auth/authActions'
 import UserView from './userView'
 import Following from './following'
@@ -9,17 +9,24 @@ import {follow} from './followingActions'
 
 
 class MobileNav extends Component{
+    
 
     constructor(props){
         super(props)
+        this.show = false
+    }
+
+    componentDidMount(){
+
+        $('.button-Collapse').sideNav()
     }
 
 
     render(){
         return (
             <ul className="side-nav" id="mobile-menu">
-                <li><a href="" onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</a></li>
-                <li><a href="" onClick={()=>LogoutAction()}>Logout</a></li>
+                <li><a onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</a></li>
+                <li><a onClick={()=>LogoutAction()}>Logout</a></li>
                 <li className="black-text">
                     <UserView name={this.name} image={this.image} headline={this.headline}/>
                 </li>

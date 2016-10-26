@@ -81,4 +81,50 @@ describe('Test Article Reducer', ()=>{
         expect(Reducer(undefined, {type:'SEARCH_BY_KEYWORD',keyword})).to.eql({...initialState, articles:{...initialState.articles, searchKeyword:keyword}})
     })
 
+    const avatars = {
+        username: 'a',
+        avatar: 'someimage'
+    }
+
+    it('should set avatars', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_AVATARS',avatars})).to.eql({...initialState, articles:{...initialState.articles, avatars}})
+    })
+
+})
+
+
+describe('Test Profile Reducer', ()=>{
+    const username = 'someuser'
+    const image = 'someimage'
+    const email = 'someemail'
+    const zipcode = '12345'
+    const headline = 'someheadline'
+    const dob = 'somedob'
+
+    it('should update headline', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_HEADLINE',username, headline})).to.eql({...initialState, profile:{...initialState.profile, username, headline}})
+    })
+
+    it('should update image', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_PROFILE',image})).to.eql({...initialState, profile:{...initialState.profile, image}})
+    })
+    
+    it('should update email', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_PROFILE',email})).to.eql({...initialState, profile:{...initialState.profile, email}})
+    })
+    
+    it('should update zipcode', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_PROFILE',zipcode})).to.eql({...initialState, profile:{...initialState.profile, zipcode : parseInt(zipcode)}})
+    })
+    
+    it('should update dob', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_PROFILE',dob})).to.eql({...initialState, profile:{...initialState.profile, dob}})
+    })
+})
+
+describe('Test Followers Reducer', ()=>{
+    const followers = {followers:{"1":"somefollower"}}
+    it('should set the followers', ()=>{
+        expect(Reducer(undefined, {type:'UPDATE_FOLLOWER',followers})).to.eql({...initialState, followers:{...initialState.followers, followers}})
+    })
 })
