@@ -8,7 +8,6 @@ export const ProfileForm = ({dispatch,error,success})=>{
     let zipcode
     let password
     let passwordcof
-    let imagefile
 
     const _clear = () => {
         email.value = ''
@@ -17,8 +16,9 @@ export const ProfileForm = ({dispatch,error,success})=>{
         passwordcof.value = ''
     }
 
+
     const _update = () =>{
-        if (!email.value && !zipcode.value && !password.value && !passwordconf.value && !imagefile.value){
+        if (!email.value && !zipcode.value && !password.value && !passwordconf.value){
             return (dispatch)=>{
                 dispatch({type:'ON_SUCESS', success:'There is nothing to update'})
             }
@@ -27,14 +27,19 @@ export const ProfileForm = ({dispatch,error,success})=>{
 
         dispatch(UpdateProfile(email.value, zipcode.value, password.value, passwordcof.value))
 
-        if (imagefile.value != ''){
-            let reader = new FileReader()
-            let file = imagefile.value
-            
-            dispatch(UpdateProfileImage(file))
-        }
-
         _clear()
+    }
+
+    let file
+    const _handleImageChange = (e) => {
+        e.preventDefault()
+        console.log("called")
+        file = e.target.files[0]
+        console.log(file)
+    }
+
+    const _handleUpload = () =>{
+        dispatch(UpdateProfileImage(file))
     }
 
     
@@ -46,10 +51,11 @@ export const ProfileForm = ({dispatch,error,success})=>{
             <div className="row">
                 <div className="input-field col s12 m10">
                     <div className="file-field input-field">
-                        <div className="btn"><span>Update Profile Image</span><input type="file"/></div>
+                        <div className="btn small"><span>Choose Image</span><input type="file"onChange={(e)=>_handleImageChange(e)}/></div>
                         <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text" ref={node=>imagefile = node}/>
+                            <input className="file-path validate" type="text" />
                         </div>
+                        <input type="button" className="btn right" value="Upload" onClick={_handleUpload}/>
                     </div>
                 </div>
             </div>

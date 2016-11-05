@@ -45,16 +45,31 @@ export function addArticle(message, file){
     if (message == '') return {type:''};
 
     return (dispatch) => {
-        const date = new Date()
-        const article = {
-            _id: Math.floor(Math.random() * 10000000),
-            comments: [],
-            date: date.toUTCString(),
-            img: file,
-            text: message
-        }
+        const fd = new FormData()
 
-        dispatch({type:'ADD_ARTICLE', article})
+        fd.append('text', message)
+        fd.append('image',file)
+
+        resource('POST','article',fd,false)
+        .then((response)=>{
+            const article = response.articles[0]
+            dispatch({type:'ADD_ARTICLE', article})
+        })
+
+        
     }
 
+}
+
+export function editArticle(articleId, message, commentId){
+    return (dispatch) => {
+        const payload = {text : message}
+        if (commentId) payload.commentId = commentId
+        resource('PUT', `articles/${articleId}`, payload)
+        .then((response)=>{
+            const article = response.articles[0]
+            dispatch({type:'EDIT_ARTICLE',article})
+            dispatch({type:'ON_SUCCESS', success:'Article edited successfully'})
+        })
+    }
 }

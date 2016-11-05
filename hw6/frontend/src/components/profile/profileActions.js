@@ -103,5 +103,9 @@ export function UpdateProfileImage(file){
         .then((response)=>{
             dispatch({type:'UPDATE_PROFILE', image: response.avatar})
         })
+        .catch(err=>{
+            console.log(file)
+            console.log(fd)
+        })
     }
 }

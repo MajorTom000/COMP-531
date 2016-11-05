@@ -32,12 +32,13 @@ function articles(state = {
     avatars: {}
 }, action){
     switch(action.type){
-        case 'UPDATE_ARTICLES':
-            return {...state, articles: action.articles}
+        case 'EDIT_ARTICLE':
         case 'ADD_ARTICLE':
             const articles = {...state.articles}
             articles[action.article.id] = action.article
             return {...state, articles}
+        case 'UPDATE_ARTICLES':
+            return {...state, articles: action.articles}
         case 'SEARCH_BY_KEYWORD':
             return {...state, searchKeyword: action.keyword}
         case 'UPDATE_AVATARS':
