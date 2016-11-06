@@ -30,20 +30,6 @@ describe('Test articleActions', () => {
         
     })
 
-    it('should add article', (done)=>{
-        const message = 'some message'
-        const file = 'some file'
-        articleActions.addArticle(message, file)(
-            action =>{
-                expect(action).to.satisfy((action)=>{
-                    return action.article.text == message && action.article.img == file && action.type =='ADD_ARTICLE'
-                })
-                done()
-            }
-        )
-    })
-
-
     it('should fetch article', (done)=>{
         const getState = {articles : {avatars:{}}}
 

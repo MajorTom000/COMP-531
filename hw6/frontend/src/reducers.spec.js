@@ -44,14 +44,6 @@ describe('Test Common Reducer', ()=>{
     it('should navigate to landing page', ()=>{
         expect(Reducer(undefined, {type:'TO_OUT'})).to.eql(initialState)
     })
-    it('should update the success message', ()=>{
-        const success = 'something'
-        expect(Reducer(undefined, {type:'ON_SUCCESS', success})).to.eql({...initialState, common:{...initialState.common, success}})
-    })
-    it('should update the error message', ()=>{
-        const error = 'something'
-        expect(Reducer(undefined, {type:'ON_ERROR', error})).to.eql({...initialState, common:{...initialState.common, error}})
-    })
 })
 
 

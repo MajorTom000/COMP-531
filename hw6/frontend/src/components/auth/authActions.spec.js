@@ -102,21 +102,4 @@ describe('Validate authenticate actions', () => {
 
     })
 
-    it('should register', (done)=>{
-        mock(`${url}/register`,{
-            method: 'POST',
-            headers:{'Content-Type':'application/json'}
-        })
-
-        authActions.Register(null)(
-            action=>{
-                expect(action).to.eql({
-                    type:'ON_SUCCESS',
-                    success: 'successfully registered'
-                })
-                done()
-            }
-        )
-    })
-
 })

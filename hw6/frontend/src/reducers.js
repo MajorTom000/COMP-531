@@ -16,10 +16,10 @@ function common(state = {
         case 'TO_PROFILE':
             return {...state, ...clear, location:"PROFILE_PAGE"}
         case 'ON_ERROR':
-            Materialize.toast(`<span class='warning'>${action.error}</span>`, 2000)
+            if (Materialize) {Materialize.toast(`<span class='warning'>${action.error}</span>`, 2000)}
             return {...state, ...clear, error: action.error}
         case 'ON_SUCCESS':
-            Materialize.toast(`<span class='success'>${action.success}</span>`, 2000)
+            if (Materialize) {Materialize.toast(`<span class='success'>${action.success}</span>`, 2000)}
             return {...state, ...clear, success: action.success}
         default:
             return {...state, ...clear}
