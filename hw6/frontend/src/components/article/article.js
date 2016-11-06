@@ -44,7 +44,7 @@ export const Article = React.createClass ({
                                     return x.date < y.date ? 1 : x.date > y.date ? -1 : 0;
                                 }).map((comment)=>
                                     <Comment key={comment.commentId} _id = {comment.commentId} author={comment.author} date={comment.date}
-                                    text={comment.text} avatar={comment.avatar} username={this.props.author} articleId={this.props._id}/> 
+                                    text={comment.text} avatar={comment.avatar} username={this.props.username} articleId={this.props._id} dispatch ={this.props.dispatch}/> 
                                 )
                             }
                             </ul>

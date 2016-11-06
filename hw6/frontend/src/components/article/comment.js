@@ -5,22 +5,28 @@ import {editArticle} from './articleActions'
 
 var ContentEditable = require('react-contenteditable')
 
-export const Comment = ({dispatch, username, commentId, author, date, text, avatar, _id, articleId}) => {
+class Comment extends React.Component {
 
 
-    let newMessage
+    constructor(props){
+        super(props)
+        this.newMessage = ''
+    }
 
-    return (
-            <li className = "collection-item">
-                <p><img className="circle comment" src={avatar}/> {author} {date}</p>
-                <ContentEditable
-                    html = {text}
-                    disabled = {username != author}
-                    onChange = {(e)=>{newMessage = e.target.value}}
-                />
-                {username != author ? '' : <button className="btn" onClick={()=>dispatch(editArticle(articleId, newMessage, _id))}><i className="material-icons">done</i></button>}
-            </li>
-    )
+    render() {
+        return (
+                <li className = "collection-item">
+                    <p><img className="circle comment" src={this.props.avatar}/> {this.props.author} {this.props.date}</p>
+                    <ContentEditable
+                        html = {this.props.text}
+                        disabled = {this.props.username != this.props.author}
+                        onChange = {(e)=>{this.newMessage = e.target.value}}
+                    />
+                    {this.props.username != this.props.author ? '' : <button className="btn" onClick={()=>{this.props.dispatch(editArticle(this.props.articleId, this.newMessage, this.props._id)) 
+                        this.forceUpdate()}}><i className="material-icons">done</i></button>}
+                </li>
+        )
+    }
 }
 
 
@@ -30,8 +36,7 @@ Comment.propTypes = {
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
-    articleId: PropTypes.number.isRequired
+    avatar: PropTypes.string
 }
 
 export default connect()(Comment)

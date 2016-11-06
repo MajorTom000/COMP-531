@@ -54,6 +54,7 @@ export function addArticle(message, file){
         .then((response)=>{
             const article = response.articles[0]
             dispatch({type:'ADD_ARTICLE', article})
+            dispatch({type:'ON_SUCCESS', success:'New Artile Posted'})
         })
 
         
@@ -69,7 +70,7 @@ export function editArticle(articleId, message, commentId){
         .then((response)=>{
             const article = response.articles[0]
             dispatch({type:'EDIT_ARTICLE',article})
-            dispatch({type:'ON_SUCCESS', success:'Article edited successfully'})
+            dispatch({type:'ON_SUCCESS', success:'Edited successfully'})
         })
     }
 }

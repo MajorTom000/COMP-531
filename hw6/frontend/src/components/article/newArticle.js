@@ -31,7 +31,7 @@ export const NewArticle = ({dispatch})=> {
                         <div className="card-action">
                             <button className="btn" onClick = { ()=>{dispatch(addArticle(newArticleText.value, newArticleImage))
                                 newArticleText.value = ''
-                                newArticleImage.value = '' 
+                                newArticleImage = '' 
                             }}>Post</button>
                             <button className="btn right" onClick = {()=>{newArticleText.value = ''; newArticleImage=null}}>Cancel</button>
                         </div>
