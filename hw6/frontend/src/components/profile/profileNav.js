@@ -10,14 +10,14 @@ export const ProfileNav = ({title, toHome})=>(
             <div className="nav-wrapper blue">
                 <a className="brand-logo">{title}</a>
                 <ul className="right hide-on-med-and-down">
-                    <li><a onClick={toHome}>Home</a></li>
+                    <li><a id="home" onClick={toHome}>Home</a></li>
                 </ul>
             </div>
         </nav>
     </div>
     <div className="container">
         <div className="row hide-on-large-only">
-            <div className="card-panel blue white-text center-align" onClick={toHome}>Home</div>
+            <div className="card-panel blue white-text center-align" id="homemobile" onClick={toHome}>Home</div>
         </div>
     </div>
     </div>

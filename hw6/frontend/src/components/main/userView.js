@@ -15,7 +15,7 @@ export const UserView = ({dispatch, name, image, email, headline})=>{
             <span className="black-text email">{email}</span>
             <p id="status">{headline}</p>
             <input type="text" className="white small" id="statusinput" ref={(node)=>{newHeadline = node}}/>
-            <input type="button" className="btn btn-small" value="Update Status" 
+            <input type="button" className="btn btn-small" id="btnStatus" value="Update Status" 
                 onClick={()=>{
                     dispatch(updateHeadline(newHeadline.value))
                     newHeadline.value = ''

@@ -25,6 +25,7 @@ export const Article = React.createClass ({
                                 <div className="card-content black-text">
                                     <span className="card-titile">{this.props.date}, {this.props.author}</span>
                                     <ContentEditable
+                                        className="articleEdit"
                                         html={this.props.text}
                                         disabled={this.props.username != this.props.author}
                                         onChange={(e)=>{this.newMessage = e.target.value}}
@@ -34,7 +35,7 @@ export const Article = React.createClass ({
                                     <button className="waves-effect waves-black btn-flat" onClick={()=>{this.hideComment = !this.hideComment
                                         this.forceUpdate()}}>Comments</button>
                                     { this.props.username == this.props.author ? 
-                                        <button className="waves-effect waves-black btn-flat" onClick={()=>{this.props.dispatch(editArticle(this.props._id, this.newMessage))}}>Edit</button> : ''
+                                        <button className="waves-effect waves-black btn-flat buttonEdit"  onClick={()=>{this.props.dispatch(editArticle(this.props._id, this.newMessage))}}>Edit</button> : ''
                                     }
                                 </div>
                             </div>

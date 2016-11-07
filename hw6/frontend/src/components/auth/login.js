@@ -22,7 +22,7 @@ export const Login = ({dispatch, error}) => {
                 <input id="password2" type="password" ref={(node)=>password = node}/>
             </div>
             <br/>
-            <button className="waves-effect waves-light btn blue" onClick={_login}>Login</button>
+            <button className="waves-effect waves-light btn blue" id="login" onClick={_login}>Login</button>
         </div>
     )
 }

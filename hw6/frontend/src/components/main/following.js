@@ -9,7 +9,7 @@ export const Following = ({dispatch, name, headline, image})=>(
         <img src={image} alt="Profile Pic" className="circle"/>
         <span className="title">{name}</span>
         <p>{headline}</p>
-        <span><i className="tiny material-icons" onClick={() => dispatch(unfollow(name))}>delete</i></span>
+        <span><i className="tiny material-icons remove" onClick={() => dispatch(unfollow(name))}>delete</i></span>
     </li>
 ) 
 

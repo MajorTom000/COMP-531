@@ -12,7 +12,7 @@ export const SideNav = ({currentUser, followers, name, image, headline,error, di
                 <UserView name={name} image={image} headline={headline}/>
             </li>
             <li>
-                <ul className="collection">
+                <ul className="collection" id="followerList">
                     { Object.keys(followers).sort().map((f) => followers[f]).map((follower) =>
                     <Following key={follower.name}
                         name={follower.name} image={follower.image} headline={follower.headline}/>
@@ -21,15 +21,13 @@ export const SideNav = ({currentUser, followers, name, image, headline,error, di
             </li>
             <li>
                 <div className="userView">
-                    <input type="text" className="white small" id="statusinput" ref={(node)=>{newUser = node}}/>
-                    <input type="button" className="btn btn-small" value="Follow" 
+                    <input type="text" className="white small" id="inputFollow" ref={(node)=>{newUser = node}}/>
+                    <input type="button" className="btn btn-small" id="btnFollow" value="Follow" 
                         onClick={()=>{
                             dispatch(follow(newUser.value))
                             newUser.value = ''
                     }}/>
                 </div>
-                <br/>
-                <span className ="warning">{error}</span>
             </li>
         </ul>
     </div>

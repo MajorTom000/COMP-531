@@ -12,10 +12,10 @@ export const MobileNav = ({dispatch, username, image,email, headline, followers}
         return (
             <div className="container hide-on-large-only">
                 <div className="row">
-                    <div className="card-panel blue white-text center-align" onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</div>
+                    <div className="card-panel blue white-text center-align" id="profilemobile" onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</div>
                 </div>
                 <div className="row">
-                    <div className="card-panel blue white-text center-align" onClick={()=>LogoutAction()}>Logout</div>
+                    <div className="card-panel blue white-text center-align" id="logoutmobile"  onClick={() => dispatch(LogoutAction())}>Logout</div>
                 </div>
                 <div className="row center-align">
                     <img className="circle" src={image}/>

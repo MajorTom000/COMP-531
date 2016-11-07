@@ -17,6 +17,7 @@ export const ArticlesView = ({username, articles, dispatch}) => {
                 <i className="material-icons left">search</i><span>Search Feed</span>
                 <input id="search" type="search" className="right" ref={(node)=>keyword = node} onChange={ () => {dispatch(searchKeyword(keyword.value))}} />
             </div>
+            <div id="articlesList">
             {
                 articles.sort((a,b)=> {
                     return a.date < b.date ? 1 : a.date > b.date ? -1 : 0
@@ -25,6 +26,7 @@ export const ArticlesView = ({username, articles, dispatch}) => {
                     date={article.date} text={article.text} image={article.img} avatar={article.avatar}
                     comments={article.comments}/> 
             )}
+            </div>
         </div>
     )
 }

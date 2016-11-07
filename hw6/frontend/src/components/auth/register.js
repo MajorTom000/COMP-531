@@ -68,7 +68,7 @@ export const Register = ({dispatch,error,success}) => {
             </div>
             <input type="hidden" name="TimeStamp" id="timeStamp"/>
             <br/>
-            <input className="waves-effect waves-light btn blue" type="submit" onClick={_register} value="Register"/>
+            <input className="waves-effect waves-light btn blue" id="register" type="submit" onClick={_register} value="Register"/>
             <input className="waves-effect waves-light btn blue" type="button" onClick={_clear} value="Clear"/>
         </form>
     </div>

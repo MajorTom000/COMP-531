@@ -10,10 +10,10 @@ export const Avatar = ({username,image, email,dob, zipcode})=>(
             <h3>Current Info</h3>
         </div>
         <div className="row">
-            Display Name:  <span id="p_dname" className="old">{username}</span>
+            Username:  <span id="uname" className="old">{username}</span>
         </div>
         <div className="row">
-            DOB:  <span id="p_email" className="old">{(new Date(dob)).toDateString()}</span>
+            DOB:  <span id="p_dob" className="old">{(new Date(dob)).toDateString()}</span>
         </div>
         <div className="row">
             Email:  <span id="p_email" className="old">{email}</span>

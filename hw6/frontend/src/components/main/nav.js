@@ -16,8 +16,8 @@ export const Nav = ({title, dispatch})=>{
                     <div className="nav-wrapper blue">
                         <a className="brand-logo">{title}</a>
                         <ul className="right hide-on-med-and-down">
-                            <li><a onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</a></li>
-                            <li><a onClick={() => dispatch(LogoutAction())}>Logout</a></li>
+                            <li><a id="profile" onClick={()=>dispatch({type:'TO_PROFILE'})}>Profile</a></li>
+                            <li><a id="logout" onClick={() => dispatch(LogoutAction())}>Logout</a></li>
                         </ul>
                     </div>
                 </nav>

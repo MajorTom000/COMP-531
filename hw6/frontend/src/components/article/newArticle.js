@@ -29,7 +29,7 @@ export const NewArticle = ({dispatch})=> {
                             </div>
                         </div>
                         <div className="card-action">
-                            <button className="btn" onClick = { ()=>{dispatch(addArticle(newArticleText.value, newArticleImage))
+                            <button className="btn" id="btnPost" onClick = { ()=>{dispatch(addArticle(newArticleText.value, newArticleImage))
                                 newArticleText.value = ''
                                 newArticleImage = '' 
                             }}>Post</button>
