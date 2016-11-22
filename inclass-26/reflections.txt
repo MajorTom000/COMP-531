@@ -1,0 +1,24 @@
+-What I hoped to learn but did not
+    I actually really wanted to learn about AngularJS, but ReactJS was cool too
+
+-What I really enjoyed learning about
+    I really enjoyed learning NodeJS, ES6, and MongoDB because I am more of a backend guy
+    but I also enjoyed learning how to use Redux for state management, which is a new paradigm for me
+
+-What worked well in the course
+    The knowledge that was introduced in the course could really prepare students for being a full-stack web developer
+
+    -How
+        Frameworks for both frontend and backend were introduced and fully practiced by building the web application
+
+-What did not work well in the course
+    I wish I spent more of my time learning about backend architectures and paradigms
+
+    -How to improve
+        Probably leaning the course a little more towards backend, talking about different structures and architectures
+
+-What you could have done to help more
+    I don't know
+
+-What else
+    I don't know
