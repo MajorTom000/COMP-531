@@ -1,0 +1,39 @@
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
+export const Avatar = ({username,image, email,dob, zipcode})=>(
+    <div className="primary userprofile center-align">
+        <div className="row">
+            <img src={image} className="circle responsive-img"/>
+        </div>
+        <div className="row">
+            <h3>Current Info</h3>
+        </div>
+        <div className="row">
+            Username:  <span id="uname" className="old">{username}</span>
+        </div>
+        <div className="row">
+            DOB:  <span id="p_dob" className="old">{(new Date(Number(dob))).toLocaleDateString()}</span>
+        </div>
+        <div className="row">
+            Email:  <span id="p_email" className="old">{email}</span>
+        </div>
+        <div className="row">
+                Zip Code:  <span id="p_zip" className="old">{zipcode}</span>
+        </div>
+    </div>
+)
+
+
+
+export default connect(
+    (state)=>{
+        return{
+            username: state.profile.username,
+            image: state.profile.image,
+            email: state.profile.email,
+            zipcode: state.profile.zipcode,
+            dob: state.profile.dob
+        }
+    }
+)(Avatar)

@@ -2,7 +2,7 @@ import Promise from 'bluebird'
 import fetch from 'isomorphic-fetch'
 
 //export const url = 'https://webdev-dummy.herokuapp.com'
-export const url = 'http://localhost:3000'
+export const url = 'https://qw12backendserver.herokuapp.com'
 
 export const resource = (method, endpoint, payload, isJson=true) => {
   const options =  {
