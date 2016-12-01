@@ -1,0 +1,21 @@
+1. Which presentation was the most polished and delivered, and why?
+
+Redis vs Memcached presentation is the most polished, it gives a deep analysis between pros and cons of redis and Memcached,
+such as persistancy and reliability. It also gives a graph that shows the trend indicating the suggestion on which to choose.
+
+ 
+
+2. Which topic did you learn the most from and what did you learn?
+
+Database system presentation is interesting, I learned the pros and cons for SQL/Non-SQL based database system
+I also learned that there's another language called N1QL, which is very similar to SQL, 
+although I need to dig in by myself about why this N1QL exists and what advantages it provides over SQL. 
+
+
+3. Which talk did you like the best and why?
+
+I liked the D3 presentation because I wanted to learn about D3 but haven't got a chance. The presentation gives me a
+good idea what D3 is, why we should use it and how we could use it. It also provides an opinion how D3 works under the hood.
+The demo is cool too.
+
+ 
