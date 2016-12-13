@@ -1,0 +1,5 @@
+{ 
+     "netid": "qw12",
+  "frontend": "http://finalfront.surge.sh/",
+  "backend": "https://finalserver.herokuapp.com"
+}

@@ -1,0 +1,32 @@
+
+> starter@1.0.0 test D:\CourseFolder\COMP-531\COMP-531\hw6\frontend
+> mocha --opts mocha.opts src/**/*.spec.js "-R" "xunit"
+
+<testsuite name="Mocha Tests" tests="26" failures="0" errors="0" skipped="0" timestamp="Sun, 06 Nov 2016 21:11:38 GMT" time="1.636">
+<testcase classname="Test resource" name="should be able to login/POST" time="0.002"/>
+<testcase classname="Test resource" name="should be able to GET resource" time="0"/>
+<testcase classname="Test resource" name="should not let user to log in without correct credential" time="0.001"/>
+<testcase classname="Test articleActions" name="should change the keyword" time="0"/>
+<testcase classname="Test articleActions" name="should fetch article" time="0.001"/>
+<testcase classname="Test ArticlesView" name="should render the view" time="0.003"/>
+<testcase classname="Test ArticlesView" name="should filter the articles displayed" time="0"/>
+<testcase classname="Validate authenticate actions" name="should log in the user" time="0.001"/>
+<testcase classname="Validate authenticate actions" name="should log out the user when OK" time="0"/>
+<testcase classname="Validate authenticate actions" name="should navigate to main page after loggin in" time="0"/>
+<testcase classname="Test profileActions" name="should update the headline" time="0.001"/>
+<testcase classname="Test profileActions" name="should fetch the profile" time="0.001"/>
+<testcase classname="Test Reducer Initialization" name="should return the initial state" time="0.001"/>
+<testcase classname="Test Common Reducer" name="should navigate to main page" time="0"/>
+<testcase classname="Test Common Reducer" name="should navigate to profile page" time="0"/>
+<testcase classname="Test Common Reducer" name="should navigate to landing page" time="0"/>
+<testcase classname="Test Article Reducer" name="should set the articles" time="0"/>
+<testcase classname="Test Article Reducer" name="should add the article" time="0"/>
+<testcase classname="Test Article Reducer" name="should set the search keyword" time="0"/>
+<testcase classname="Test Article Reducer" name="should set avatars" time="0"/>
+<testcase classname="Test Profile Reducer" name="should update headline" time="0"/>
+<testcase classname="Test Profile Reducer" name="should update image" time="0"/>
+<testcase classname="Test Profile Reducer" name="should update email" time="0"/>
+<testcase classname="Test Profile Reducer" name="should update zipcode" time="0"/>
+<testcase classname="Test Profile Reducer" name="should update dob" time="0"/>
+<testcase classname="Test Followers Reducer" name="should set the followers" time="0.001"/>
+</testsuite>

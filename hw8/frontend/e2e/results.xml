@@ -1,0 +1,20 @@
+
+> starter@1.0.0 e2e:base D:\CourseFolder\COMP-531\COMP-531\hw6\frontend
+> mocha --opts e2e/mocha.opts e2e/*.spec.js "--reporter" "xunit"
+
+array size: 6
+<testsuite name="Mocha Tests" tests="13" failures="0" errors="0" skipped="0" timestamp="Mon, 07 Nov 2016 04:01:03 GMT" time="34.199">
+<testcase classname="Test frontend application" name="should show the register message" time="1.877"/>
+<testcase classname="Test frontend application" name="should log in as the test user" time="0.526"/>
+<testcase classname="Test frontend application" name="should post a new article" time="1.627"/>
+<testcase classname="Test frontend application" name="should edit an article" time="1.679"/>
+<testcase classname="Test frontend application" name="should update the headline" time="2.197"/>
+<testcase classname="Test frontend application" name="should search by keyword" time="1.67"/>
+<testcase classname="Test frontend application" name="should add/remove a follower" time="4.267"/>
+<testcase classname="Test frontend application" name="should navigate to profile" time="1.055"/>
+<testcase classname="Test frontend application" name="should update profile - email" time="3.255"/>
+<testcase classname="Test frontend application" name="should update profile - zipcode" time="3.18"/>
+<testcase classname="Test frontend application" name="should update profile - password" time="1.253"/>
+<testcase classname="Test frontend application" name="should navigate to home" time="1.051"/>
+<testcase classname="shutdown" name="now" time="2.32"/>
+</testsuite>
